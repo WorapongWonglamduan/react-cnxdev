@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/pages/home/Home";
 import AdminRoute from "./routes/AdminRoute";
 import UserRoute from "./routes/UserRoute";
+import HomeAdmin from "./components/pages/admin/HomeAdmin";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
                   path="index"
                   element={
                     <>
-                      <Home />
+                      <HomeAdmin />
                     </>
                   }
                 />

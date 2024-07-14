@@ -1,4 +1,4 @@
-.carousel-item {
+/* .carousel-item {
   min-height: 100vh;
 }
 
@@ -9,6 +9,23 @@
 }
 
 .carousel-item___bg-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.react-multiple-carousel__arrow--left,
+.react-multiple-carousel__arrow--right {
+  display: none;
+} */
+.react-multi-carousel-item {
+  height: 100vh !important;
+  align-items: center !important;
+  cursor: pointer !important;
+}
+
+.react-multi-carousel-item .carousel-item___bg-image {
   height: 100%;
   width: 100%;
   object-fit: cover;

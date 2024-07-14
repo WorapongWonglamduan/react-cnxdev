@@ -36,10 +36,10 @@ const HomeSlider = () => {
   return (
     <>
       <Carousel responsive={responsive} infinite={true} {...config}>
-        <div className="carousel-item ">
+        <div>
           <img src={Img.homeSlide1} className="carousel-item___bg-image" />
         </div>
-        <div className="carousel-item ">
+        <div>
           <img src={Img.homeSlide2} className="carousel-item___bg-image" />
         </div>
       </Carousel>
