@@ -1,0 +1,21 @@
+.carousel-item {
+  min-height: 100vh;
+}
+
+.carousel-item {
+  height: 100vh;
+  align-items: center !important;
+  cursor: pointer;
+}
+
+.carousel-item___bg-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.react-multiple-carousel__arrow--left,
+.react-multiple-carousel__arrow--right {
+  display: none;
+}
