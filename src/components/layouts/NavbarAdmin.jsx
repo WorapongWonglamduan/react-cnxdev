@@ -2,10 +2,22 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+// import NavDropdown from "react-bootstrap/NavDropdown";
 import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import "./NavbarAdmin.css";
-import { Avatar } from "antd";
+import { Avatar, Dropdown } from "antd";
+import { Link } from "react-router-dom";
+
+const items = [
+  {
+    key: "1",
+    label: (
+      <Link to={"/"} style={{ fontWeight: "bold", textDecoration: "none" }}>
+        Home User
+      </Link>
+    ),
+  },
+];
 
 const NavbarAdmin = ({ setCollaps }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -53,11 +65,18 @@ const NavbarAdmin = ({ setCollaps }) => {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Avatar
-              src={require("../../assets/image/imgprofie.jpg")}
-              size={40}
-              icon={<UserOutlined />}
-            />
+            <Dropdown
+              menu={{
+                items,
+              }}
+            >
+              <Avatar
+                src={require("../../assets/image/imgprofie.jpg")}
+                size={40}
+                icon={<UserOutlined />}
+                style={{ cursor: "pointer" }}
+              />
+            </Dropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -8,13 +8,15 @@ const SidebarAdmin = ({ children, collaps }) => {
         <Menu>
           <SubMenu label="Manage Users">
             <Link
-              to={"/admin/index"}
+              to={"/admin/"}
               style={{ textDecoration: "none", color: "#000" }}
             >
               <MenuItem>Users List</MenuItem>
             </Link>
           </SubMenu>
-          <MenuItem> Home User </MenuItem>
+          <Link to={"/"} style={{ textDecoration: "none", color: "#000" }}>
+            <MenuItem> Home User </MenuItem>
+          </Link>
         </Menu>
       </Sidebar>
       <main style={{ padding: 10, width: "100%" }}>

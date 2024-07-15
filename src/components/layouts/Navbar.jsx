@@ -17,7 +17,7 @@ const items = [
     key: "2",
     label: (
       <Link
-        to={"/admin/index"}
+        to={"/admin/"}
         style={{ fontWeight: "bold", textDecoration: "none" }}
       >
         Admin Mode

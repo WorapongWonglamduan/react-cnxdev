@@ -17,7 +17,7 @@ const App = () => {
             <AdminRoute>
               <Routes>
                 <Route
-                  path="index"
+                  path="/"
                   element={
                     <>
                       <HomeAdmin />
