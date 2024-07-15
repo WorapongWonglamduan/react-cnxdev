@@ -9,10 +9,12 @@
   align-items: center !important;
   z-index: 100 !important;
   transition: 0.32s ease-in-out !important;
+  backdrop-filter: blur(0px) !important;
 }
 
 .header.scrolled {
   padding: 1rem 10% !important;
+  backdrop-filter: blur(50px) !important;
 }
 
 .header::before {
@@ -100,6 +102,7 @@
     0 0 40px rgba(255, 255, 255, 0.2);
   animation: flicker 2s infinite;
 }
+
 @keyframes flicker {
   0%,
   100% {
