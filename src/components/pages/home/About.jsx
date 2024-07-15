@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./About.css";
 import { Img } from "../../../assets/image/hookImg";
-import { AnimatePresence, motion } from "framer-motion";
+
 const About = (props) => {
-  const [selectedId, setSelectedId] = useState(null);
-  const items = [
-    { id: 1, title: "Item 1", subtitle: "Subtitle 1" },
-    { id: 2, title: "Item 2", subtitle: "Subtitle 2" },
-    { id: 3, title: "Item 3", subtitle: "Subtitle 3" },
-  ];
   return (
-    <>
+    <section id="about">
       <div className="about">
         <div className="container">
           <div className="row">
@@ -23,7 +17,7 @@ const About = (props) => {
             </div>
             <div className="col-xs-12 col-md-6">
               <div className="about__about-text">
-                <h2>About Us</h2>
+                <h2 className="fw-bold">About Us</h2>
                 <p>{props.data ? props.data.paragraph : "loading..."}</p>
                 <h3>Why Choose Us?</h3>
                 <div className="row">
@@ -62,7 +56,7 @@ const About = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

@@ -20,7 +20,8 @@ const FeatureProduct = () => {
   }, []);
   return (
     <>
-      <div
+      <section
+        id="feature"
         style={{
           // background:
           //   "linear-gradient(45.21deg, rgba(0, 0, 0,0.8) 70.01%, #4a2fbd 100.59%)",
@@ -50,7 +51,7 @@ const FeatureProduct = () => {
             </motion.div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

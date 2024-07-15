@@ -34,7 +34,7 @@ const HomeSlider = () => {
   };
 
   return (
-    <>
+    <section id="home">
       <Carousel responsive={responsive} infinite={true} {...config}>
         <div>
           <img src={Img.homeSlide1} className="carousel-item___bg-image" />
@@ -46,7 +46,7 @@ const HomeSlider = () => {
           <img src={Img.homeSlide3} className="carousel-item___bg-image" />
         </div>
       </Carousel>
-    </>
+    </section>
   );
 };
 

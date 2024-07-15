@@ -40,7 +40,7 @@ const Filter = ({
               className={activeCategory === item ? "active" : ""}
               onClick={() => setActiveCategory(item)}
             >
-              {item}
+              {"Group" + item}
             </Button>
           );
         })}
