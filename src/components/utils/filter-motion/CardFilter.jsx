@@ -9,7 +9,6 @@ const CardFilter = ({ product }) => {
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
       exit={{ opacity: 0 }}
-      className="popular-movies--mod"
     >
       <motion.img
         src={product.image}
@@ -24,7 +23,7 @@ const CardFilter = ({ product }) => {
         transition={{ delay: 0.1, duration: 0.3 }}
         className="text-center pt-2"
       >
-        <Button> {product.title}</Button>
+        <Button> {"group =" + product.category.toString()}</Button>
       </motion.p>
     </motion.div>
   );

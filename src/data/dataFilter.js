@@ -3,7 +3,7 @@ import { Img } from "../assets/image/hookImg";
 export const dataFilter = [
   {
     id: 1,
-    title: "To Kill a Mockingbird",
+    title: "group3",
     image: Img.homeSlide1,
     overview:
       "A novel about the serious issues of rape and racial inequality, told from the perspective of young Scout Finch.",
@@ -11,7 +11,7 @@ export const dataFilter = [
   },
   {
     id: 2,
-    title: "1984",
+    title: "group2",
     image: Img.homeSlide1,
     overview:
       "A dystopian novel about totalitarianism, surveillance, and government control.",
@@ -19,15 +19,15 @@ export const dataFilter = [
   },
   {
     id: 3,
-    title: "Pride and Prejudice",
+    title: "group3",
     image: Img.homeSlide3,
     overview:
       "A classic romance novel about the trials and tribulations of Elizabeth Bennet and Mr. Darcy.",
-    category: [1, 3],
+    category: [3],
   },
   {
     id: 4,
-    title: "The Great Gatsby",
+    title: "group4",
     image: Img.homeSlide2,
     overview:
       "A novel depicting the decadence and moral emptiness of the wealthy elite in the Jazz Age.",
@@ -35,7 +35,7 @@ export const dataFilter = [
   },
   {
     id: 5,
-    title: "Jane Eyre",
+    title: "group3",
     image: Img.homeSlide3,
     overview:
       "A Gothic novel about a young governess who falls in love with her mysterious employer.",
@@ -43,7 +43,7 @@ export const dataFilter = [
   },
   {
     id: 6,
-    title: "Moby-Dick",
+    title: "group1",
     image: Img.homeSlide1,
     overview:
       "A novel about Captain Ahab's obsessive quest to kill the great white whale, Moby Dick.",
@@ -51,7 +51,7 @@ export const dataFilter = [
   },
   {
     id: 7,
-    title: "The Catcher in the Rye",
+    title: "group2",
     image: Img.homeSlide2,
     overview:
       "A novel about teenage angst and alienation, narrated by the unforgettable Holden Caulfield.",
@@ -59,10 +59,10 @@ export const dataFilter = [
   },
   {
     id: 8,
-    title: "Brave New World",
+    title: "group2",
     image: Img.homeSlide1,
     overview:
       "A dystopian novel depicting a future society where people are controlled through pleasure.",
-    category: [1, 2],
+    category: [2],
   },
 ];

@@ -8,7 +8,7 @@ import CardFilter from "../../utils/filter-motion/CardFilter";
 const FeatureProduct = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(1);
+  const [activeCategory, setActiveCategory] = useState(0);
 
   const getData = async () => {
     setAllProducts(dataFilter);

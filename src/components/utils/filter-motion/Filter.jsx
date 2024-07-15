@@ -8,7 +8,7 @@ const Filter = ({
   allProducts,
 }) => {
   useEffect(() => {
-    if (activeCategory === 1) {
+    if (activeCategory === 0) {
       setFiltered(allProducts);
       return;
     }
@@ -19,33 +19,31 @@ const Filter = ({
     setFiltered(filtered);
   }, [activeCategory]);
 
+  const allCategory = allProducts
+    .flatMap((item) => item.category)
+    .sort((a, b) => a - b);
+  const uniqueCategory = [...new Set(allCategory)];
+
   return (
     <div className="container text-center  p-4">
       <Space>
         <Button
-          className={activeCategory === 1 ? "active" : ""}
-          onClick={() => setActiveCategory(1)}
+          className={activeCategory === 0 ? "active" : ""}
+          onClick={() => setActiveCategory(0)}
         >
           All
         </Button>
-        <Button
-          className={activeCategory === 2 ? "active" : ""}
-          onClick={() => setActiveCategory(2)}
-        >
-          1
-        </Button>
-        <Button
-          className={activeCategory === 3 ? "active" : ""}
-          onClick={() => setActiveCategory(3)}
-        >
-          2
-        </Button>
-        <Button
-          className={activeCategory === 4 ? "active" : ""}
-          onClick={() => setActiveCategory(4)}
-        >
-          3
-        </Button>
+        {uniqueCategory.map((item, index) => {
+          return (
+            <Button
+              key={index}
+              className={activeCategory === item ? "active" : ""}
+              onClick={() => setActiveCategory(item)}
+            >
+              {item}
+            </Button>
+          );
+        })}
       </Space>
     </div>
   );
