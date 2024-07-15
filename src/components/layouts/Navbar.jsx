@@ -72,20 +72,25 @@ const Navbar = () => {
         <i className="bx bx-x" id="close-icon"></i>
       </label>
       <nav className="navbar">
-        {allSection.map((item, index) => (
-          <a
-            key={index}
-            style={{ "--i": 0 }}
-            href={`#${item.name}`}
-            className={`${
-              activeSection === item.name
-                ? "navbar__text navbar__text--shadow"
-                : ""
-            }`}
-          >
-            {capitalizeFirstLetter(item.name)}
-          </a>
-        ))}
+        {allSection.map((item, index) => {
+          console.log("====================================");
+          console.log("item->", item, "====", activeSection);
+          console.log("====================================");
+          return (
+            <a
+              key={index}
+              style={{ "--i": 0 }}
+              href={`#${item.name}`}
+              className={`${
+                activeSection === item.name
+                  ? "navbar__text navbar__text--shadow"
+                  : ""
+              }`}
+            >
+              {capitalizeFirstLetter(item.name)}
+            </a>
+          );
+        })}
 
         <Link className="nav-action-btn" style={{ "--i": 4 }}>
           <Space direction="horizontal" size={16}>
