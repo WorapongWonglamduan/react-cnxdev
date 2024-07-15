@@ -3,27 +3,20 @@ import "./Home.css";
 import "./FeatureProduct.css";
 import Filter from "../../utils/filter-motion/Filter";
 import { motion, AnimatePresence } from "framer-motion";
-import Movie from "../../utils/filter-motion/Movie";
+import { dataFilter } from "../../../data/dataFilter";
+import CardFilter from "../../utils/filter-motion/CardFilter";
 const FeatureProduct = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [activeGenre, setActiveGenre] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(1);
 
-  const fetchPopular = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=1dfcce0b8c5b9ce64123438b04c4e865&language=en-US"
-    );
-    const movies = await data.json();
-    console.log("====================================");
-    console.log("movies-<>", movies);
-    console.log("====================================");
-    console.log(movies);
-    setPopularMovies(movies.results);
-    setFiltered(movies.results);
+  const getData = async () => {
+    setAllProducts(dataFilter);
+    setFiltered(dataFilter);
   };
 
   useEffect(() => {
-    fetchPopular();
+    getData();
   }, []);
   return (
     <>
@@ -38,17 +31,20 @@ const FeatureProduct = () => {
       >
         <div className="container">
           <div className="wrap-page">
+            <div className="text-center">
+              <h1 className="fw-bold">Featured Product</h1>
+            </div>
             <Filter
-              activeGenre={activeGenre}
-              setActiveGenre={setActiveGenre}
-              popular={popularMovies}
+              activeCategory={activeCategory}
+              setActiveCategory={setActiveCategory}
+              allProducts={allProducts}
               setFiltered={setFiltered}
             />
             <motion.div layout className="popular-movies">
               <AnimatePresence>
                 {filtered &&
-                  filtered.map((movie) => {
-                    return <Movie movie={movie} key={movie.id} />;
+                  filtered.map((product) => {
+                    return <CardFilter product={product} key={product.id} />;
                   })}
               </AnimatePresence>
             </motion.div>

@@ -1,38 +1,52 @@
+import { Button, Space } from "antd";
 import React, { useEffect } from "react";
 
-const Filter = ({ setActiveGenre, activeGenre, setFiltered, popular }) => {
+const Filter = ({
+  setActiveCategory,
+  activeCategory,
+  setFiltered,
+  allProducts,
+}) => {
   useEffect(() => {
-    if (activeGenre === 0) {
-      setFiltered(popular);
+    if (activeCategory === 1) {
+      setFiltered(allProducts);
       return;
     }
-    const filtered = popular.filter((movie) =>
-      movie.genre_ids.includes(activeGenre)
+    const filtered = allProducts.filter((p) =>
+      p.category.includes(activeCategory)
     );
 
     setFiltered(filtered);
-    console.log(filtered);
-  }, [activeGenre]);
+  }, [activeCategory]);
+
   return (
-    <div className="filter-container">
-      <button
-        className={activeGenre === 0 ? "active" : ""}
-        onClick={() => setActiveGenre(0)}
-      >
-        All
-      </button>
-      <button
-        className={activeGenre === 35 ? "active" : ""}
-        onClick={() => setActiveGenre(35)}
-      >
-        Comedy
-      </button>
-      <button
-        className={activeGenre === 28 ? "active" : ""}
-        onClick={() => setActiveGenre(28)}
-      >
-        Action
-      </button>
+    <div className="container text-center  p-4">
+      <Space>
+        <Button
+          className={activeCategory === 1 ? "active" : ""}
+          onClick={() => setActiveCategory(1)}
+        >
+          All
+        </Button>
+        <Button
+          className={activeCategory === 2 ? "active" : ""}
+          onClick={() => setActiveCategory(2)}
+        >
+          1
+        </Button>
+        <Button
+          className={activeCategory === 3 ? "active" : ""}
+          onClick={() => setActiveCategory(3)}
+        >
+          2
+        </Button>
+        <Button
+          className={activeCategory === 4 ? "active" : ""}
+          onClick={() => setActiveCategory(4)}
+        >
+          3
+        </Button>
+      </Space>
     </div>
   );
 };
