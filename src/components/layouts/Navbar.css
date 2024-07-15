@@ -86,7 +86,7 @@
   display: none !important;
 }
 
-.header .icons {
+.icons {
   font-size: 2.8rem !important;
   right: 5% !important;
   color: #fff !important;
@@ -138,7 +138,7 @@
   }
 
   #check:checked ~ .navbar {
-    height: 17.7rem !important;
+    height: 27.7rem !important;
     opacity: 1 !important;
   }
   #check:not(:checked) ~ .navbar {

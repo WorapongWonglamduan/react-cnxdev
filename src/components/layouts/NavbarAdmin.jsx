@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
 import NavDropdown from "react-bootstrap/NavDropdown";
-
+import { MenuOutlined } from "@ant-design/icons";
 import "./NavbarAdmin.css";
 
 const NavbarAdmin = ({ setCollaps }) => {
@@ -33,10 +32,7 @@ const NavbarAdmin = ({ setCollaps }) => {
     >
       <Container fluid>
         <Navbar.Brand
-          // href="#"
-          onClick={() => {
-            setCollaps((prev) => ({ ...prev, sideBar: !prev.sideBar }));
-          }}
+        // href="#"
         >
           Admin
         </Navbar.Brand>
@@ -47,8 +43,7 @@ const NavbarAdmin = ({ setCollaps }) => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
+            {/* <Nav.Link href="#action2">Link</Nav.Link> */}
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -59,9 +54,16 @@ const NavbarAdmin = ({ setCollaps }) => {
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
+            <Nav.Link
+              onClick={() => {
+                setCollaps((prev) => ({ ...prev, sideBar: !prev.sideBar }));
+              }}
+            >
+              <MenuOutlined />
             </Nav.Link>
+            {/* <Nav.Link href="#" disabled>
+              Link
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

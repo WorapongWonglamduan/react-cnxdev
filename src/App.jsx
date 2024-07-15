@@ -5,6 +5,7 @@ import Home from "./components/pages/home/Home";
 import AdminRoute from "./routes/AdminRoute";
 import UserRoute from "./routes/UserRoute";
 import HomeAdmin from "./components/pages/admin/HomeAdmin";
+import EditUsers from "./components/pages/admin/EditUsers";
 
 const App = () => {
   return (
@@ -23,6 +24,15 @@ const App = () => {
                     </>
                   }
                 />
+                <Route
+                  path="edit-user/:id"
+                  element={
+                    <>
+                      <EditUsers />
+                    </>
+                  }
+                />
+                <Route path="*" element={<div>Not Found Page !</div>} />
               </Routes>
             </AdminRoute>
           }
