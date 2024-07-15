@@ -26,7 +26,6 @@ const HomeAdmin = () => {
       sorter: (a, b) => {
         return a.firstName.length - b.firstName.length;
       },
-      defaultSortOrder: "descend",
     },
     {
       title: "LastName",
@@ -37,7 +36,6 @@ const HomeAdmin = () => {
 
       onFilter: (value, record) => record.lastName.indexOf(value) === 0,
       sorter: (a, b) => a.lastName.length - b.lastName.length,
-      sortDirections: ["descend"],
     },
     {
       title: "Email",
@@ -45,8 +43,7 @@ const HomeAdmin = () => {
       showSorterTooltip: {
         target: "full-header",
       },
-
-      sortDirections: ["descend"],
+      sorter: (a, b) => a.email.length - b.email.length,
     },
     {
       title: "Address",
@@ -56,6 +53,17 @@ const HomeAdmin = () => {
     {
       title: "Status",
       dataIndex: "status",
+      filters: [
+        {
+          text: "Active",
+          value: "active",
+        },
+        {
+          text: "Inactive",
+          value: "inactive",
+        },
+      ],
+      onFilter: (value, record) => record.status.includes(value),
     },
     {
       title: "Role",
@@ -68,16 +76,15 @@ const HomeAdmin = () => {
     {
       title: "Action",
       key: "action",
-      render: (item, index) => (
-        <div key={index}>
-          <Button
-            onClick={() => {
-              handleEdit(item);
-            }}
-          >
-            Edit
-          </Button>
-        </div>
+      render: (item) => (
+        <Button
+          key={item.uid}
+          onClick={() => {
+            handleEdit(item);
+          }}
+        >
+          Edit
+        </Button>
       ),
     },
   ];

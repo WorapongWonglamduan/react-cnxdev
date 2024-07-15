@@ -42,6 +42,9 @@ const HomeSlider = () => {
         <div>
           <img src={Img.homeSlide2} className="carousel-item___bg-image" />
         </div>
+        <div>
+          <img src={Img.homeSlide3} className="carousel-item___bg-image" />
+        </div>
       </Carousel>
     </>
   );

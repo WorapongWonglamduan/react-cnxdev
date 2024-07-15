@@ -50,12 +50,20 @@ const user = {
     ],
   },
 };
-
+//get all
 export const getUser = async () => {
   // return await axios.get(path);
   return user;
 };
 
+//get by id
 export const getUserById = async (id) => {
   return await axios.get(path + "/" + id);
+};
+
+//update by id
+
+export const updateUserById = async (id, dataUpdate) => {
+  return { status: 200 };
+  // return await axios.put(path + "/" + id, dataUpdate);
 };

@@ -3,8 +3,9 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import "./NavbarAdmin.css";
+import { Avatar } from "antd";
 
 const NavbarAdmin = ({ setCollaps }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -31,11 +32,7 @@ const NavbarAdmin = ({ setCollaps }) => {
       }`}
     >
       <Container fluid>
-        <Navbar.Brand
-        // href="#"
-        >
-          Admin
-        </Navbar.Brand>
+        <Navbar.Brand>Admin</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -43,27 +40,24 @@ const NavbarAdmin = ({ setCollaps }) => {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            {/* <Nav.Link href="#action2">Link</Nav.Link> */}
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
+            {/* <NavDropdown title="" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="/">HomePage</NavDropdown.Item>
+            </NavDropdown> */}
             <Nav.Link
+              className="icons-collaps-sidebar"
               onClick={() => {
                 setCollaps((prev) => ({ ...prev, sideBar: !prev.sideBar }));
               }}
             >
               <MenuOutlined />
             </Nav.Link>
-            {/* <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link> */}
+          </Nav>
+          <Nav>
+            <Avatar
+              src={require("../../assets/image/imgprofie.jpg")}
+              size={40}
+              icon={<UserOutlined />}
+            />
           </Nav>
         </Navbar.Collapse>
       </Container>
