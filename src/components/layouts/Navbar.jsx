@@ -76,7 +76,7 @@ const Navbar = () => {
           return (
             <a
               key={index}
-              style={{ "--i": 0 }}
+              style={{ "--i": index }}
               href={`#${item.name}`}
               className={`${
                 activeSection === item.name
