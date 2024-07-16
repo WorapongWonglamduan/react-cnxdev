@@ -2,10 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 // import Navbar from "./components/layouts/Navbar";
 import Home from "./components/pages/home/Home";
-import AdminRoute from "./routes/AdminRoute";
-import UserRoute from "./routes/UserRoute";
+
 import HomeAdmin from "./components/pages/admin/HomeAdmin";
 import EditUsers from "./components/pages/admin/EditUsers";
+import AdminRoute from "./components/routes/AdminRoute";
+import UserRoute from "./components/routes/UserRoute";
 
 const App = () => {
   return (

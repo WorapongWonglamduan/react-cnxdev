@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import NavbarAdmin from "../components/layouts/NavbarAdmin";
-import SidebarAdmin from "../components/layouts/SidebarAdmin";
+import NavbarAdmin from "../layouts/NavbarAdmin";
+import SidebarAdmin from "../layouts/SidebarAdmin";
 
 //  children is content render
 const AdminRoute = ({ children }) => {

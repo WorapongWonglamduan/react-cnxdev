@@ -3,7 +3,7 @@ import "./Home.css";
 import "./FeatureProduct.css";
 import Filter from "../../utils/filter-motion/Filter";
 import { motion, AnimatePresence } from "framer-motion";
-import { dataFilter } from "../../../data/dataFilter";
+import { dataFilter } from "../../data/dataFilter";
 import CardFilter from "../../utils/filter-motion/CardFilter";
 const FeatureProduct = () => {
   const [allProducts, setAllProducts] = useState([]);

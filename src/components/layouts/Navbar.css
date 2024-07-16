@@ -9,12 +9,12 @@
   align-items: center !important;
   z-index: 100 !important;
   transition: 0.32s ease-in-out !important;
-  backdrop-filter: blur(0px) !important;
+  /* backdrop-filter: blur(0px) !important; */
 }
 
 .header.scrolled {
   padding: 1rem 10% !important;
-  backdrop-filter: blur(50px) !important;
+  /* backdrop-filter: blur(50px) !important; */
 }
 
 .header::before {

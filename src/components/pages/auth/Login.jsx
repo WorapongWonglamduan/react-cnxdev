@@ -1,88 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Img } from "../../../assets/image/hookImg";
-import { v4 as uuidv4 } from "uuid";
 
 import "./Login.css";
-import moment from "moment";
-import { Form, Input, Select } from "antd";
-import { createUser } from "../../../apis/baseApi";
-import { useSwipeable } from "react-swipeable";
-import { SwalHooks } from "../../../hooks/sweet-alert2";
 
-const { Option } = Select;
+import { Form, Input } from "antd";
+
+import { SwalHooks } from "../../hooks/sweet-alert2";
+import { getUser } from "../../apis/baseApi";
 
 const Login = ({ setFlip, setLoading }) => {
   const [form] = Form.useForm();
+  const [allUsers, setAllUsers] = useState([]);
   const { SwalSucces, SwalFail } = SwalHooks();
 
-  // const handlers = useSwipeable({
-  //   onSwipedLeft: () =>
-  //     setFlip((prev) => ({ ...prev, flip: !prev.flip, page: "login" })),
-  //   onSwipedRight: () =>
-  //     setFlip((prev) => ({ ...prev, flip: !prev.flip, page: "login" })),
-  //   preventDefaultTouchmoveEvent: true,
-  //   trackMouse: true, // htmlFor mouse input
-  // });
+  const onMatchAccount = ({ email, password }) => {
+    return allUsers.find((acc) => {
+      return email === acc.email && password === acc.password;
+    });
+  };
 
   //update to server
   const onSubmit = async (values) => {
     try {
-      setLoading(true);
-      const data = {
-        user: {
-          ...values,
-          created: moment().format(),
-          uid: uuidv4(),
-          roles: "user",
-          status: "active",
-        },
-      };
+      const email = values.email;
+      const password = values.password;
 
-      const res = await createUser(data);
-      if (res.status === 200) {
-        setTimeout(() => {
-          setLoading(false);
-          SwalSucces({ title: "Create Success", text: "" });
-          form.resetFields();
-        }, 2000);
+      const hasMatch = onMatchAccount({
+        email: email,
+        password: password,
+      });
+      if (hasMatch) {
+        SwalSucces({ title: "Login Success !", text: "" });
       } else {
-        setLoading(false);
-        SwalFail({ title: "Create Fail", text: "" });
+        SwalFail({ title: "Email or Password Incorrect !", text: "" });
       }
     } catch (error) {
-      console.error("Error Create user data:", error);
-      setLoading(false);
-      SwalFail({ title: "Create Fail", text: "" });
+      console.error("Error Login user:", error);
     }
   };
 
-  //default form value
-  const initialValuesForm = {
-    prefix: "66",
+  const getData = async () => {
+    const res = await getUser();
+    if (res.status === 200) {
+      setAllUsers(res?.data?.users);
+    }
   };
+  //first load
+  useEffect(() => {
+    getData();
+  }, []);
 
-  //input phone
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="66">+66</Option>
-      </Select>
-    </Form.Item>
-  );
   return (
     <div className="wrap-footer">
       <div className="container">
         <div className="login" style={{ minHeight: "100vh" }}>
           <div className="container">
-            <Form
-              form={form}
-              onFinish={onSubmit}
-              initialValues={initialValuesForm}
-            >
+            <Form form={form} onFinish={onSubmit}>
               <div className="row">
                 <div className="col-md-6"></div>
                 <div className="col-md-6">
@@ -158,7 +131,12 @@ const Login = ({ setFlip, setLoading }) => {
                           name="email"
                           rules={[
                             {
+                              required: true,
                               type: "email",
+                              message: "The input is not valid E-mail!",
+                            },
+                            {
+                              message: "Please input your E-mail!",
                             },
                           ]}
                         >
@@ -174,9 +152,14 @@ const Login = ({ setFlip, setLoading }) => {
                         </label>
                         <Form.Item
                           name="password"
-                          //   hasFeedback
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your password!",
+                            },
+                          ]}
                         >
-                          <Input.Password minLength={6} />
+                          <Input.Password />
                         </Form.Item>
                       </div>
                     </div>

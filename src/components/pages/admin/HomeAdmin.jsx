@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 
 import { Button, Table } from "antd";
-import { deleteUser, getUser } from "../../../apis/baseApi";
+import { deleteUser, getUser } from "../../apis/baseApi";
 import { useNavigate } from "react-router-dom";
 import "./HomeAdmin.css";
-import { SwalHooks } from "../../../hooks/sweet-alert2";
+import { SwalHooks } from "../../hooks/sweet-alert2";
 import LoadingContentAdmin from "../../Loading/LoadingContentAdmin";
 // const onChange = (pagination, filters, sorter, extra) => {
 //   console.log("params", pagination, filters, sorter, extra);
@@ -162,18 +162,16 @@ const HomeAdmin = () => {
   }, []);
   return (
     <LoadingContentAdmin loading={loading}>
-      <div className="container">
-        <Table
-          {...tableProps}
-          columns={columns}
-          dataSource={userData.map((user) => ({ ...user, key: user.uid }))}
-          // onChange={onChange}
-          bordered={true}
-          showSorterTooltip={{
-            target: "sorter-icon",
-          }}
-        />
-      </div>
+      <Table
+        {...tableProps}
+        columns={columns}
+        dataSource={userData.map((user) => ({ ...user, key: user.uid }))}
+        // onChange={onChange}
+        bordered={true}
+        showSorterTooltip={{
+          target: "sorter-icon",
+        }}
+      />
     </LoadingContentAdmin>
   );
 };

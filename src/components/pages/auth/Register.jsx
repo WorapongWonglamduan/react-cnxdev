@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import "./Register.css";
 import moment from "moment";
 import { Form, Input, Select } from "antd";
-import { createUser } from "../../../apis/baseApi";
+import { createUser } from "../../apis/baseApi";
 
-import { SwalHooks } from "../../../hooks/sweet-alert2";
+import { SwalHooks } from "../../hooks/sweet-alert2";
 
 const { Option } = Select;
 

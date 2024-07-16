@@ -1,4 +1,4 @@
-import { Img } from "../assets/image/hookImg";
+import { Img } from "../../assets/image/hookImg";
 
 export const dataFilter = [
   {

@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getUser, getUserById, updateUserById } from "../../../apis/baseApi";
+import { getUser, getUserById, updateUserById } from "../../apis/baseApi";
 import { useLocation } from "react-router-dom";
 import "./EditUsers.css";
-import {
-  Alert,
-  Button,
-  Form,
-  Input,
-  Select,
-  Space,
-  Switch,
-  Typography,
-  Card,
-} from "antd";
+import { Form, Input, Select, Space, Switch, Card } from "antd";
 
-import { SwalHooks } from "../../../hooks/sweet-alert2";
+import { SwalHooks } from "../../hooks/sweet-alert2";
 import LoadingContentAdmin from "../../Loading/LoadingContentAdmin";
 
 const { Option } = Select;
