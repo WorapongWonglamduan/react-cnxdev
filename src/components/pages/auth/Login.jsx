@@ -8,11 +8,14 @@ import { Form, Input } from "antd";
 import { getUser } from "../../apis/baseApi";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ setFlip, setLoading }) => {
   //redux
   const dispatch = useDispatch();
 
+  //hooks
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [allUsers, setAllUsers] = useState([]);
 
@@ -37,7 +40,15 @@ const Login = ({ setFlip, setLoading }) => {
           type: "LOGIN",
           payload: user,
         });
+
         toast.success("Login Success");
+        form.resetFields();
+
+        if (user.roles === "admin") {
+          navigate("/admin/");
+        } else {
+          navigate("*/");
+        }
       } else {
         toast.error("Email or Password Incorrect !");
       }

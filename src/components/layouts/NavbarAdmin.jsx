@@ -7,19 +7,43 @@ import { MenuOutlined, UserOutlined } from "@ant-design/icons";
 import "./NavbarAdmin.css";
 import { Avatar, Dropdown } from "antd";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
-const items = [
-  {
-    key: "1",
-    label: (
-      <Link to={"/"} style={{ fontWeight: "bold", textDecoration: "none" }}>
-        Home User
-      </Link>
-    ),
-  },
-];
+const NavbarAdmin = ({ setCollaps, user }) => {
+  const dispatch = useDispatch();
 
-const NavbarAdmin = ({ setCollaps }) => {
+  const imageUser =
+    user !== null ? require("../../assets/image/imgprofie.jpg") : "";
+
+  const items = [
+    !user && {
+      key: "1",
+      label: (
+        <Link
+          to={"/"}
+          onClick={() => onLogout()}
+          style={{ fontWeight: "bold", textDecoration: "none" }}
+        >
+          Logout
+        </Link>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <Link to={"/"} style={{ fontWeight: "bold", textDecoration: "none" }}>
+          Home User
+        </Link>
+      ),
+    },
+  ];
+
+  const onLogout = () => {
+    dispatch({ type: "LOGOUT", payload: null });
+    toast.success("Logout");
+  };
+
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -71,7 +95,7 @@ const NavbarAdmin = ({ setCollaps }) => {
               }}
             >
               <Avatar
-                src={require("../../assets/image/imgprofie.jpg")}
+                src={imageUser}
                 size={40}
                 icon={<UserOutlined />}
                 style={{ cursor: "pointer" }}

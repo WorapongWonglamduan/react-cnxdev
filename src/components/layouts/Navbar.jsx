@@ -4,30 +4,15 @@ import { Avatar, Space, Dropdown } from "antd";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { capitalizeFirstLetter } from "../utils/utils-fuc";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
-const items = [
-  {
-    key: "1",
-    label: (
-      <Link style={{ fontWeight: "bold", textDecoration: "none" }}>
-        profile
-      </Link>
-    ),
-  },
-  {
-    key: "2",
-    label: (
-      <Link
-        to={"/admin/"}
-        style={{ fontWeight: "bold", textDecoration: "none" }}
-      >
-        Admin Mode
-      </Link>
-    ),
-  },
-];
+const Navbar = ({ user }) => {
+  const dispatch = useDispatch();
 
-const Navbar = () => {
+  const imageUser =
+    user !== null ? require("../../assets/image/imgprofie.jpg") : "";
+
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const allSection = [
@@ -36,6 +21,35 @@ const Navbar = () => {
     { id: 3, name: "service" },
     { id: 4, name: "feature" },
   ];
+  const items = [
+    user && {
+      key: "1",
+      label: (
+        <Link
+          onClick={() => onLogout()}
+          style={{ fontWeight: "bold", textDecoration: "none" }}
+        >
+          Logout
+        </Link>
+      ),
+    },
+    {
+      key: "2",
+      label: (
+        <Link
+          to={"/admin/"}
+          style={{ fontWeight: "bold", textDecoration: "none" }}
+        >
+          Admin Mode
+        </Link>
+      ),
+    },
+  ];
+
+  const onLogout = () => {
+    dispatch({ type: "LOGOUT", payload: null });
+    toast.success("Logout");
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -100,11 +114,7 @@ const Navbar = () => {
                   items,
                 }}
               >
-                <Avatar
-                  src={require("../../assets/image/imgprofie.jpg")}
-                  size={40}
-                  icon={<UserOutlined />}
-                />
+                <Avatar src={imageUser} size={40} icon={<UserOutlined />} />
               </Dropdown>
             </Space>
           </Space>
@@ -120,11 +130,7 @@ const Navbar = () => {
                 items,
               }}
             >
-              <Avatar
-                src={require("../../assets/image/imgprofie.jpg")}
-                size={40}
-                icon={<UserOutlined />}
-              />
+              <Avatar src={imageUser} size={40} icon={<UserOutlined />} />
             </Dropdown>
           </Space>
         </Space>

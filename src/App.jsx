@@ -8,6 +8,7 @@ import HomeAdmin from "./components/pages/admin/HomeAdmin";
 import EditUsers from "./components/pages/admin/EditUsers";
 import AdminRoute from "./components/routes/AdminRoute";
 import UserRoute from "./components/routes/UserRoute";
+import LoadingToRedirect from "./components/routes/LoadingToRedirect";
 
 const App = () => {
   return (
@@ -35,7 +36,7 @@ const App = () => {
                     </>
                   }
                 />
-                <Route path="*" element={<div>Not Found Page !</div>} />
+                <Route path="*" element={<LoadingToRedirect />} />
               </Routes>
             </AdminRoute>
           }
@@ -54,7 +55,7 @@ const App = () => {
                   }
                 />
                 <Route
-                  path="/user2"
+                  path="/userTest"
                   element={
                     <>
                       <Home />
@@ -66,6 +67,7 @@ const App = () => {
                     </>
                   }
                 />
+                <Route path="*" element={<LoadingToRedirect />} />
               </Routes>
             </UserRoute>
           }

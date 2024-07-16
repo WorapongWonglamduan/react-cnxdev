@@ -8,8 +8,7 @@ export const userReducer = (state = initialState, action) => {
     case "LOGIN":
       return { ...state, user: { ...action.payload } };
     case "LOGOUT":
-      localStorage.clear();
-      return initialState;
+      return { user: null };
     default:
       return state;
   }
