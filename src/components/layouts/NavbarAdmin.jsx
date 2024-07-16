@@ -44,7 +44,7 @@ const NavbarAdmin = ({ setCollaps }) => {
       }`}
     >
       <Container fluid>
-        <Navbar.Brand>Admin</Navbar.Brand>
+        <Navbar.Brand className="fw-bold">Admin</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

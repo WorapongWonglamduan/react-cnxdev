@@ -107,7 +107,8 @@ const EditUsers = () => {
       },
     };
     // find id table
-    const id = allUserData.find((item) => item.uid === values.uid).id;
+    // const id = allUserData.find((item) => item.uid === values.uid).id;
+    const id = state.id;
 
     const res = await updateUserById(id, dataUpdate);
 

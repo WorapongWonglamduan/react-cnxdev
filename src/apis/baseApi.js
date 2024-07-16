@@ -1,9 +1,7 @@
 import axios from "axios";
 import { user } from "../data/user";
 
-// const path = "https://api.sheety.co/bcbf3f4e0149c157bf80eabef5de749e/crud/users";
-const path =
-  "https://api.sheety.co/4f8c0c63622e50151c7cbc297e937a52/crud/users";
+const path = process.env.REACT_APP_API_SHEET;
 
 // const config = {};
 
@@ -28,4 +26,9 @@ export const createUser = async (data) => {
 export const updateUserById = async (id, data) => {
   return { status: 200 };
   // return await axios.put(path + "/" + id, data);
+};
+//update
+export const deleteUser = async (id) => {
+  return { status: 204 };
+  // return await axios.delete(path + "/" + id);
 };
