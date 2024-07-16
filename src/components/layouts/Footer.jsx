@@ -9,10 +9,12 @@ const SectionFooter = ({ setFlip }) => {
       <div className="container">
         <div class="row" style={{ minHeight: "100vh", padding: "16.5% 0" }}>
           <div class="col-md-6 mx-auto text-center">
-            <h2 class="mb-4 ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
-              autem aspernatur omnis quibusdam nulla voluptate?
-            </h2>
+            <h2 class="mb-4 fw-bold">Join Our Community Today!</h2>
+
+            <h4>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt
+              ipsam dignissimos, amet voluptatibus possimus in?
+            </h4>
             <a href="#home" class="btn btn-outline-dark">
               Login
             </a>
@@ -29,13 +31,13 @@ const SectionFooter = ({ setFlip }) => {
     </div>
   );
 };
-const Footer = () => {
+const Footer = ({ loading, setLoading }) => {
   const [isFlip, setFlip] = useState(false);
   return (
     <section id="footer">
       <ReactCardFlip isFlipped={isFlip}>
         <SectionFooter setFlip={setFlip} />
-        <Register setFlip={setFlip} />
+        <Register setFlip={setFlip} loading={loading} setLoading={setLoading} />
       </ReactCardFlip>
     </section>
   );

@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Button, Table } from "antd";
 import { getUser } from "../../../apis/baseApi";
 import { useNavigate } from "react-router-dom";
-
+import "./HomeAdmin.css";
 // const onChange = (pagination, filters, sorter, extra) => {
 //   console.log("params", pagination, filters, sorter, extra);
 // };

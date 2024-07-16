@@ -73,9 +73,6 @@ const Navbar = () => {
       </label>
       <nav className="navbar">
         {allSection.map((item, index) => {
-          console.log("====================================");
-          console.log("item->", item, "====", activeSection);
-          console.log("====================================");
           return (
             <a
               key={index}

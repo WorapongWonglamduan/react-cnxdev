@@ -1,14 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import { Img } from "../../../assets/image/hookImg";
+import { v4 as uuidv4 } from "uuid";
 import "./Register.css";
+import moment from "moment";
+import {
+  Alert,
+  Button,
+  Form,
+  Input,
+  Select,
+  Space,
+  Switch,
+  Typography,
+  Card,
+} from "antd";
+import { createUser } from "../../../apis/baseApi";
 
-const Register = ({ setFlip }) => {
+const { Option } = Select;
+
+const Register = ({ setFlip, setLoading }) => {
+  const [form] = Form.useForm();
+
+  //update to server
+  const onSubmit = async (values) => {
+    try {
+      setLoading(true);
+      const data = {
+        user: {
+          ...values,
+          created: moment().format(),
+          uid: uuidv4(),
+          roles: "user",
+          status: "active",
+        },
+      };
+
+      const res = await createUser(data);
+      if (res.status === 200) {
+        setTimeout(() => {
+          setLoading(false);
+          form.resetFields();
+        }, 2000);
+      }
+
+      // console.log("====================================");
+      // console.log("res->", res);
+      // console.log("====================================");
+      console.log("====================================");
+      console.log("data->", data);
+      console.log("====================================");
+    } catch (error) {
+      console.error("Error Create user data:", error);
+      setLoading(false);
+    }
+  };
+
+  //default form value
+  const initialValuesForm = {
+    prefix: "66",
+  };
+
+  //input phone
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select
+        style={{
+          width: 70,
+        }}
+      >
+        <Option value="66">+66</Option>
+      </Select>
+    </Form.Item>
+  );
   return (
     <div className="wrap-footer">
       <div className="container">
         <div class="register" style={{ minHeight: "100vh" }}>
           <div class="container">
-            <form action="#" method="post">
+            <Form
+              form={form}
+              onFinish={onSubmit}
+              initialValues={initialValuesForm}
+            >
               <div class="row">
                 <div class="col-md-6">
                   <h1 className="fw-bold">Create an account</h1>
@@ -22,104 +95,156 @@ const Register = ({ setFlip }) => {
               <div class="row mt-4">
                 <div class="col-md-5">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 wrap-input-register">
                       <div class="mb-3">
                         <label class="form-label" for="firstname">
                           First Name
                         </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="firstname"
-                          id="firstname"
-                          required
-                        />
+                        <Form.Item
+                          name="firstName"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your first name!",
+                              whitespace: true,
+                            },
+                          ]}
+                        >
+                          <Input />
+                        </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 wrap-input-register">
                       <div class="mb-3">
                         <label class="form-label" for="lastname">
                           Last Name
                         </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="lastname"
-                          id="lastname"
-                          required
-                        />
+                        <Form.Item
+                          name="lastName"
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your last name!",
+                              whitespace: true,
+                            },
+                          ]}
+                        >
+                          <Input />
+                        </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 wrap-input-register">
                       <div class="mb-3">
                         <label class="form-label" for="email">
                           Email
                         </label>
-                        <input
-                          type="email"
-                          class="form-control"
+                        <Form.Item
                           name="email"
-                          id="email"
-                          required
-                        />
+                          rules={[
+                            {
+                              required: true,
+                              type: "email",
+                              message: "The input is not valid E-mail!",
+                            },
+                            {
+                              message: "Please input your E-mail!",
+                            },
+                          ]}
+                        >
+                          <Input />
+                        </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 wrap-input-register">
                       <div class="mb-3">
                         <label class="form-label" for="phone">
                           Phone Number
                         </label>
-                        <input
-                          type="text"
-                          class="form-control"
+                        <Form.Item
                           name="phone"
-                          id="phone"
-                          required
-                        />
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your phone number!",
+                            },
+                          ]}
+                        >
+                          <Input
+                            type="phone"
+                            minLength={10}
+                            maxLength={10}
+                            addonBefore={prefixSelector}
+                            style={{
+                              width: "100%",
+                            }}
+                          />
+                        </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 wrap-input-register">
                       <div class="mb-3">
                         <label class="form-label" for="password">
                           Password
                         </label>
-                        <input
-                          type="password"
-                          class="form-control"
+                        <Form.Item
                           name="password"
-                          id="password"
-                          required
-                        />
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input your password!",
+                            },
+                          ]}
+                          //   hasFeedback
+                        >
+                          <Input.Password minLength={6} />
+                        </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 wrap-input-register">
                       <div class="mb-3">
                         <label class="form-label" for="confirm-password">
                           Confirm Password
                         </label>
-                        <input
-                          type="password"
-                          class="form-control"
-                          name="confirm-password"
-                          id="confirm-password"
-                          required
-                        />
+                        <Form.Item
+                          name="confirm"
+                          dependencies={["password"]}
+                          hasFeedback
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please confirm your password!",
+                            },
+                            ({ getFieldValue }) => ({
+                              validator(_, value) {
+                                if (
+                                  !value ||
+                                  getFieldValue("password") === value
+                                ) {
+                                  return Promise.resolve();
+                                }
+                                return Promise.reject(
+                                  new Error(
+                                    "The new password that you entered do not match!"
+                                  )
+                                );
+                              },
+                            }),
+                          ]}
+                        >
+                          <Input.Password />
+                        </Form.Item>
                       </div>
                     </div>
                     <div class="col-md-12 d-flex gap-4">
-                      <button
-                        class="btn btn-dark btn-lg"
-                        type="button"
-                        onClick={() => {}}
-                      >
+                      <button class="btn btn-outline-dark btn-lg" type="submit">
                         <img
                           src={Img.iconPlus}
-                          class="btn-icon icon-white"
+                          class="btn-icon icon-fb"
                           alt="Plus"
                         />
                         <span>Create Account</span>
                       </button>
-                      <button
+                      {/* <button
                         class="btn btn-dark btn-lg"
                         type="button"
                         onClick={() => {
@@ -127,7 +252,7 @@ const Register = ({ setFlip }) => {
                         }}
                       >
                         <span>Flip</span>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
@@ -173,7 +298,7 @@ const Register = ({ setFlip }) => {
                   </div>
                 </div>
               </div>
-            </form>
+            </Form>
           </div>
         </div>
       </div>

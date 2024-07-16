@@ -12,7 +12,6 @@ import {
   Switch,
   Typography,
   Card,
-  Spin,
 } from "antd";
 
 import { SwalHooks } from "../../../hooks/sweet-alert2";
@@ -147,7 +146,7 @@ const EditUsers = () => {
       <Form
         {...formItemLayout}
         form={form}
-        name="register"
+        name="edit"
         onFinish={onSubmit}
         initialValues={initialValuesForm}
         scrollToFirstError
@@ -211,7 +210,7 @@ const EditUsers = () => {
               ]}
             >
               <Input
-                type="number"
+                type="tel"
                 minLength={10}
                 maxLength={10}
                 addonBefore={prefixSelector}
@@ -241,10 +240,12 @@ const EditUsers = () => {
           <div className="col">
             <Form.Item {...tailFormItemLayout}>
               <Space>
-                <Button type="primary" htmlType="submit">
+                <button type="submit" className="btn btn-dark">
                   Update
-                </Button>
-                <Button htmlType="reset">reset</Button>
+                </button>
+                <button type="reset" className="btn btn-outline-dark">
+                  reset
+                </button>
               </Space>
             </Form.Item>
           </div>
@@ -257,15 +258,7 @@ const EditUsers = () => {
   return (
     <div className="container">
       <LoadingOverlay loading={loading}>
-        <Alert
-          message={
-            <Title style={{ margin: 0 }} level={5}>
-              Edit User
-            </Title>
-          }
-          type="info"
-          showIcon
-        />
+        <h5 className="alert alert-dark fw-bold"> Edit User</h5>
         <br />
         <Card>
           <FormEdit />

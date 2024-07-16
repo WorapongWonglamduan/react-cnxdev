@@ -134,8 +134,23 @@
 .btn .icon-white {
   filter: brightness(0) invert(1);
 }
+
+.btn .icon-fb {
+  filter: brightness(0) saturate(100%) invert(11%) sepia(22%) saturate(351%)
+    hue-rotate(169deg) brightness(93%) contrast(91%);
+}
+
+.btn:hover .icon-fb {
+  filter: brightness(0) invert(1);
+}
+
 .btn:hover .icon-white-hover,
 .btn:focus .icon-white-hover,
 .btn:active .icon-white-hover {
   filter: brightness(0) invert(1);
+}
+
+.wrap-input-register
+  :where(.css-dev-only-do-not-override-98ntnt).ant-input-outlined {
+  padding: 12px 12px !important;
 }
