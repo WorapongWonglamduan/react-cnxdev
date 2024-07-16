@@ -1,22 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Img } from "../../../assets/image/hookImg";
 import { v4 as uuidv4 } from "uuid";
 
 import "./Register.css";
 import moment from "moment";
-import {
-  Alert,
-  Button,
-  Form,
-  Input,
-  Select,
-  Space,
-  Switch,
-  Typography,
-  Card,
-} from "antd";
+import { Form, Input, Select } from "antd";
 import { createUser } from "../../../apis/baseApi";
-import { useSwipeable } from "react-swipeable";
+
 import { SwalHooks } from "../../../hooks/sweet-alert2";
 
 const { Option } = Select;
@@ -24,13 +14,6 @@ const { Option } = Select;
 const Register = ({ setFlip, setLoading }) => {
   const [form] = Form.useForm();
   const { SwalSucces, SwalFail } = SwalHooks();
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => setFlip((prev) => !prev),
-    onSwipedRight: () => setFlip((prev) => !prev),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true, // htmlFor mouse input
-  });
 
   //update to server
   const onSubmit = async (values) => {
@@ -82,7 +65,7 @@ const Register = ({ setFlip, setLoading }) => {
     </Form.Item>
   );
   return (
-    <div className="wrap-footer" {...handlers}>
+    <div className="wrap-footer">
       <div className="container">
         <div className="register" style={{ minHeight: "100vh" }}>
           <div className="container">
@@ -211,7 +194,10 @@ const Register = ({ setFlip, setLoading }) => {
                     </div>
                     <div className="col-md-6 wrap-input-register">
                       <div className="mb-3">
-                        <label className="form-label" htmlFor="confirm-password">
+                        <label
+                          className="form-label"
+                          htmlFor="confirm-password"
+                        >
                           Confirm Password
                         </label>
                         <Form.Item
@@ -245,7 +231,10 @@ const Register = ({ setFlip, setLoading }) => {
                       </div>
                     </div>
                     <div className="col-md-12 d-flex gap-4">
-                      <button className="btn btn-outline-dark btn-lg" type="submit">
+                      <button
+                        className="btn btn-outline-dark btn-lg"
+                        type="submit"
+                      >
                         <img
                           src={Img.iconPlus}
                           className="btn-icon icon-fb"
@@ -253,21 +242,23 @@ const Register = ({ setFlip, setLoading }) => {
                         />
                         <span>Create Account</span>
                       </button>
-                      {/* <button
-                        className="btn btn-dark btn-lg"
-                        type="button"
-                        onClick={() => {
-                          setFlip((prev) => !prev);
-                        }}
-                      >
-                        <span>Flip</span>
-                      </button> */}
                     </div>
                   </div>
                 </div>
                 <div className="col-md-2">
                   <div className="divider">
-                    <span>OR</span>
+                    <div
+                      className="flip"
+                      onClick={() =>
+                        setFlip((prev) => ({
+                          ...prev,
+                          flip: !prev.flip,
+                          page: "register",
+                        }))
+                      }
+                    >
+                      Flip
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-5">

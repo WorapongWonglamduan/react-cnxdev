@@ -65,7 +65,9 @@ const Navbar = () => {
   }, []);
   return (
     <header className={`header  ${scrolled ? "scrolled" : ""}`}>
-      <Link className="logo">Logo</Link>
+      <a className="logo" href="#home">
+        Logo
+      </a>
       <input type="checkbox" id="check" />
       <label htmlFor="check" className="icons">
         <i className="bx bx-menu" id="menu-icon"></i>

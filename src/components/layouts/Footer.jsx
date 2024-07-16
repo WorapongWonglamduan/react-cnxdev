@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Footer.css";
 import ReactCardFlip from "react-card-flip";
 import Register from "../pages/auth/Register";
+import Login from "../pages/auth/Login";
 
 const SectionFooter = ({ setFlip }) => {
   return (
@@ -17,12 +18,27 @@ const SectionFooter = ({ setFlip }) => {
               dolor sit, amet voluptatibus possimus in? .Lorem ipsum dolor sit,
               amet voluptatibus possimus in? .Lorem ipsum dolor sit
             </h4>
-            <a href="#home" className="btn btn-outline-dark">
+            <button
+              onClick={() =>
+                setFlip((prev) => ({
+                  ...prev,
+                  flip: !prev.flip,
+                  page: "login",
+                }))
+              }
+              className="btn  btn-outline-dark ms-md-2 mt-2 mt-md-0"
+            >
               Login
-            </a>
+            </button>
             <div className="w-100 d-md-none"></div>
             <button
-              onClick={() => setFlip((prev) => !prev)}
+              onClick={() =>
+                setFlip((prev) => ({
+                  ...prev,
+                  flip: !prev.flip,
+                  page: "register",
+                }))
+              }
               className="btn  btn-outline-dark ms-md-2 mt-2 mt-md-0"
             >
               Create Account
@@ -33,13 +49,37 @@ const SectionFooter = ({ setFlip }) => {
     </div>
   );
 };
+
+const RenderPage = ({ isFlip, setFlip, loading, setLoading }) => {
+  return (
+    <>
+      {isFlip?.page === "register" ? (
+        <Register setFlip={setFlip} loading={loading} setLoading={setLoading} />
+      ) : (
+        isFlip?.page === "login" && (
+          <Login setFlip={setFlip} loading={loading} setLoading={setLoading} />
+        )
+      )}
+    </>
+  );
+};
 const Footer = ({ loading, setLoading }) => {
-  const [isFlip, setFlip] = useState(false);
+  const [isFlip, setFlip] = useState({ flip: false, page: "register" });
+
   return (
     <section id="footer">
-      <ReactCardFlip isFlipped={isFlip}>
-        <SectionFooter setFlip={setFlip} />
-        <Register setFlip={setFlip} loading={loading} setLoading={setLoading} />
+      <ReactCardFlip isFlipped={isFlip.flip}>
+        <SectionFooter
+          setFlip={setFlip}
+          loading={loading}
+          setLoading={setLoading}
+        />
+        <RenderPage
+          isFlip={isFlip}
+          setFlip={setFlip}
+          loading={loading}
+          setLoading={setLoading}
+        />
       </ReactCardFlip>
     </section>
   );
