@@ -13,7 +13,9 @@ const SectionFooter = ({ setFlip }) => {
 
             <h4>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt
-              ipsam dignissimos, amet voluptatibus possimus in?
+              ipsam dignissimos, amet voluptatibus possimus in? .Lorem ipsum
+              dolor sit, amet voluptatibus possimus in? .Lorem ipsum dolor sit,
+              amet voluptatibus possimus in? .Lorem ipsum dolor sit
             </h4>
             <a href="#home" className="btn btn-outline-dark">
               Login
