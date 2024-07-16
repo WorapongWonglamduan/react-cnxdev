@@ -21,7 +21,7 @@ const Login = ({ setFlip, setLoading }) => {
 
   const onMatchAccount = ({ email, password }) => {
     return allUsers.find((acc) => {
-      return email === acc.email && password === acc.password;
+      return email === acc?.email && password === acc?.password;
     });
   };
 
@@ -35,6 +35,7 @@ const Login = ({ setFlip, setLoading }) => {
         email: email,
         password: password,
       });
+
       if (user) {
         dispatch({
           type: "LOGIN",
@@ -47,7 +48,9 @@ const Login = ({ setFlip, setLoading }) => {
         if (user.roles === "admin") {
           navigate("/admin/");
         } else {
-          navigate("*/");
+          document
+            .getElementById("home")
+            .scrollIntoView({ behavior: "smooth" });
         }
       } else {
         toast.error("Email or Password Incorrect !");

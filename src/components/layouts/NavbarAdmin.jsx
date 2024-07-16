@@ -17,7 +17,7 @@ const NavbarAdmin = ({ setCollaps, user }) => {
     user !== null ? require("../../assets/image/imgprofie.jpg") : "";
 
   const items = [
-    !user && {
+    user && {
       key: "1",
       label: (
         <Link

@@ -33,8 +33,25 @@ const Navbar = ({ user }) => {
         </Link>
       ),
     },
-    {
+    !user && {
       key: "2",
+      label: (
+        <a
+          href="#footer"
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .getElementById("footer")
+              .scrollIntoView({ behavior: "smooth" });
+          }}
+          style={{ fontWeight: "bold", textDecoration: "none" }}
+        >
+          Login
+        </a>
+      ),
+    },
+    {
+      key: "3",
       label: (
         <Link
           to={"/admin/"}
