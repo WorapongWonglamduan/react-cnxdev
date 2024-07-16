@@ -17,17 +17,19 @@ import {
 } from "antd";
 import { createUser } from "../../../apis/baseApi";
 import { useSwipeable } from "react-swipeable";
+import { SwalHooks } from "../../../hooks/sweet-alert2";
 
 const { Option } = Select;
 
 const Register = ({ setFlip, setLoading }) => {
   const [form] = Form.useForm();
+  const { SwalSucces, SwalFail } = SwalHooks();
 
   const handlers = useSwipeable({
     onSwipedLeft: () => setFlip((prev) => !prev),
     onSwipedRight: () => setFlip((prev) => !prev),
     preventDefaultTouchmoveEvent: true,
-    trackMouse: true, // for mouse input
+    trackMouse: true, // htmlFor mouse input
   });
 
   //update to server
@@ -48,19 +50,17 @@ const Register = ({ setFlip, setLoading }) => {
       if (res.status === 200) {
         setTimeout(() => {
           setLoading(false);
+          SwalSucces({ title: "Create Success", text: "" });
           form.resetFields();
         }, 2000);
+      } else {
+        setLoading(false);
+        SwalFail({ title: "Create Fail", text: "" });
       }
-
-      // console.log("====================================");
-      // console.log("res->", res);
-      // console.log("====================================");
-      console.log("====================================");
-      console.log("data->", data);
-      console.log("====================================");
     } catch (error) {
       console.error("Error Create user data:", error);
       setLoading(false);
+      SwalFail({ title: "Create Fail", text: "" });
     }
   };
 
@@ -84,15 +84,15 @@ const Register = ({ setFlip, setLoading }) => {
   return (
     <div className="wrap-footer" {...handlers}>
       <div className="container">
-        <div class="register" style={{ minHeight: "100vh" }}>
-          <div class="container">
+        <div className="register" style={{ minHeight: "100vh" }}>
+          <div className="container">
             <Form
               form={form}
               onFinish={onSubmit}
               initialValues={initialValuesForm}
             >
-              <div class="row">
-                <div class="col-md-6">
+              <div className="row">
+                <div className="col-md-6">
                   <h1 className="fw-bold">Create an account</h1>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -101,12 +101,12 @@ const Register = ({ setFlip, setLoading }) => {
                   </p>
                 </div>
               </div>
-              <div class="row mt-4">
-                <div class="col-md-5">
-                  <div class="row">
-                    <div class="col-md-6 wrap-input-register">
-                      <div class="mb-3">
-                        <label class="form-label" for="firstname">
+              <div className="row mt-4">
+                <div className="col-md-5">
+                  <div className="row">
+                    <div className="col-md-6 wrap-input-register">
+                      <div className="mb-3">
+                        <label className="form-label" htmlFor="firstname">
                           First Name
                         </label>
                         <Form.Item
@@ -123,9 +123,9 @@ const Register = ({ setFlip, setLoading }) => {
                         </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6 wrap-input-register">
-                      <div class="mb-3">
-                        <label class="form-label" for="lastname">
+                    <div className="col-md-6 wrap-input-register">
+                      <div className="mb-3">
+                        <label className="form-label" htmlFor="lastname">
                           Last Name
                         </label>
                         <Form.Item
@@ -142,9 +142,9 @@ const Register = ({ setFlip, setLoading }) => {
                         </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6 wrap-input-register">
-                      <div class="mb-3">
-                        <label class="form-label" for="email">
+                    <div className="col-md-6 wrap-input-register">
+                      <div className="mb-3">
+                        <label className="form-label" htmlFor="email">
                           Email
                         </label>
                         <Form.Item
@@ -164,9 +164,9 @@ const Register = ({ setFlip, setLoading }) => {
                         </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6 wrap-input-register">
-                      <div class="mb-3">
-                        <label class="form-label" for="phone">
+                    <div className="col-md-6 wrap-input-register">
+                      <div className="mb-3">
+                        <label className="form-label" htmlFor="phone">
                           Phone Number
                         </label>
                         <Form.Item
@@ -190,9 +190,9 @@ const Register = ({ setFlip, setLoading }) => {
                         </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6 wrap-input-register">
-                      <div class="mb-3">
-                        <label class="form-label" for="password">
+                    <div className="col-md-6 wrap-input-register">
+                      <div className="mb-3">
+                        <label className="form-label" htmlFor="password">
                           Password
                         </label>
                         <Form.Item
@@ -209,9 +209,9 @@ const Register = ({ setFlip, setLoading }) => {
                         </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-6 wrap-input-register">
-                      <div class="mb-3">
-                        <label class="form-label" for="confirm-password">
+                    <div className="col-md-6 wrap-input-register">
+                      <div className="mb-3">
+                        <label className="form-label" htmlFor="confirm-password">
                           Confirm Password
                         </label>
                         <Form.Item
@@ -244,17 +244,17 @@ const Register = ({ setFlip, setLoading }) => {
                         </Form.Item>
                       </div>
                     </div>
-                    <div class="col-md-12 d-flex gap-4">
-                      <button class="btn btn-outline-dark btn-lg" type="submit">
+                    <div className="col-md-12 d-flex gap-4">
+                      <button className="btn btn-outline-dark btn-lg" type="submit">
                         <img
                           src={Img.iconPlus}
-                          class="btn-icon icon-fb"
+                          className="btn-icon icon-fb"
                           alt="Plus"
                         />
                         <span>Create Account</span>
                       </button>
                       {/* <button
-                        class="btn btn-dark btn-lg"
+                        className="btn btn-dark btn-lg"
                         type="button"
                         onClick={() => {
                           setFlip((prev) => !prev);
@@ -265,42 +265,42 @@ const Register = ({ setFlip, setLoading }) => {
                     </div>
                   </div>
                 </div>
-                <div class="col-md-2">
-                  <div class="divider">
+                <div className="col-md-2">
+                  <div className="divider">
                     <span>OR</span>
                   </div>
                 </div>
-                <div class="col-md-5">
-                  <div class="social-registration">
-                    <a href="#" class="btn btn-social btn-facebook mb-3">
+                <div className="col-md-5">
+                  <div className="social-registration">
+                    <a href="#" className="btn btn-social btn-facebook mb-3">
                       <img
                         src={Img.iconFb}
                         alt="Facebook"
-                        class="btn-icon icon-white"
+                        className="btn-icon icon-white"
                       />
                       <span>Continue with Facebook</span>
                     </a>
-                    <a href="#" class="btn btn-social btn-twitter mb-3">
+                    <a href="#" className="btn btn-social btn-twitter mb-3">
                       <img
                         src={Img.iconTw}
                         alt="Twitter"
-                        class="btn-icon icon-white"
+                        className="btn-icon icon-white"
                       />
                       <span>Continue with Twitter</span>
                     </a>
-                    <a href="#" class="btn btn-social btn-gmail mb-3">
+                    <a href="#" className="btn btn-social btn-gmail mb-3">
                       <img
                         src={Img.iconGmail}
                         alt="Gmail"
-                        class="btn-icon icon-white"
+                        className="btn-icon icon-white"
                       />
                       <span>Continue with Gmail</span>
                     </a>
-                    <a href="#" class="btn btn-social btn-linkedin mb-3">
+                    <a href="#" className="btn btn-social btn-linkedin mb-3">
                       <img
                         src={Img.iconLn}
                         alt="LinkedIn"
-                        class="btn-icon icon-white"
+                        className="btn-icon icon-white"
                       />
                       <span>Continue with LinkedIn</span>
                     </a>

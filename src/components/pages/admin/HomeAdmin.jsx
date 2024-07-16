@@ -97,6 +97,9 @@ const HomeAdmin = () => {
   const getData = async () => {
     setLoading(true);
     const res = await getUser();
+    console.log("====================================");
+    console.log("res->", res);
+    console.log("====================================");
 
     if (res.status === 200) {
       setTimeout(() => {

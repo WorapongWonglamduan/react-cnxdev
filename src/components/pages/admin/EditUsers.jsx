@@ -15,9 +15,10 @@ import {
 } from "antd";
 
 import { SwalHooks } from "../../../hooks/sweet-alert2";
-import LoadingOverlay from "../../Loading/LoadingOverLay";
+import LoadingContentAdmin from "../../Loading/LoadingContentAdmin";
+
 const { Option } = Select;
-const { Title } = Typography;
+
 const formItemLayout = {
   wrapperCol: {
     xs: {
@@ -55,14 +56,14 @@ const EditUsers = () => {
   const { state } = useLocation();
   const [form] = Form.useForm();
   const [, /* userData */ setUserData] = useState([]);
-  const [allUserData, setallUserData] = useState([]);
+  const [allUserData, setAllUserData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [initialValuesForm, setInitialValuesForm] = useState({});
   //alert
   const { SwalSucces, SwalFail } = SwalHooks();
 
   // set data User
-  const onUpdateIntialValue = (userData) => {
+  const onUpdateInitialValue = (userData) => {
     const values = {
       uid: userData?.uid,
       email: userData?.email,
@@ -78,18 +79,17 @@ const EditUsers = () => {
 
   const getData = async () => {
     try {
-      const res = await getUser();
+      // const res = await getUser();
+      // if (res.status === 200) {
+      setTimeout(() => {
+        // setAllUserData(res.data.users);
 
-      if (res.status === 200) {
-        setTimeout(() => {
-          setallUserData(res.data.users);
+        setUserData(state);
+        onUpdateInitialValue(state);
 
-          setUserData(state);
-          onUpdateIntialValue(state);
-
-          setLoading(false);
-        }, 2000);
-      }
+        setLoading(false);
+      }, 2000);
+      // }
     } catch (error) {
       console.error("Error fetching user data:", error);
       setLoading(false);
@@ -257,13 +257,13 @@ const EditUsers = () => {
 
   return (
     <div className="container">
-      <LoadingOverlay loading={loading}>
+      <LoadingContentAdmin loading={loading}>
         <h5 className="alert alert-dark fw-bold"> Edit User</h5>
         <br />
         <Card>
           <FormEdit />
         </Card>
-      </LoadingOverlay>
+      </LoadingContentAdmin>
     </div>
   );
 };
