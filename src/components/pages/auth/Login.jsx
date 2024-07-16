@@ -5,13 +5,16 @@ import "./Login.css";
 
 import { Form, Input } from "antd";
 
-import { SwalHooks } from "../../hooks/sweet-alert2";
 import { getUser } from "../../apis/baseApi";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const Login = ({ setFlip, setLoading }) => {
+  //redux
+  const dispatch = useDispatch();
+
   const [form] = Form.useForm();
   const [allUsers, setAllUsers] = useState([]);
-  const { SwalSucces, SwalFail } = SwalHooks();
 
   const onMatchAccount = ({ email, password }) => {
     return allUsers.find((acc) => {
@@ -25,14 +28,18 @@ const Login = ({ setFlip, setLoading }) => {
       const email = values.email;
       const password = values.password;
 
-      const hasMatch = onMatchAccount({
+      const user = onMatchAccount({
         email: email,
         password: password,
       });
-      if (hasMatch) {
-        SwalSucces({ title: "Login Success !", text: "" });
+      if (user) {
+        dispatch({
+          type: "LOGIN",
+          payload: user,
+        });
+        toast.success("Login Success");
       } else {
-        SwalFail({ title: "Email or Password Incorrect !", text: "" });
+        toast.error("Email or Password Incorrect !");
       }
     } catch (error) {
       console.error("Error Login user:", error);
