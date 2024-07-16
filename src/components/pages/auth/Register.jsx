@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Img } from "../../../assets/image/hookImg";
 import { v4 as uuidv4 } from "uuid";
+
 import "./Register.css";
 import moment from "moment";
 import {
@@ -15,11 +16,19 @@ import {
   Card,
 } from "antd";
 import { createUser } from "../../../apis/baseApi";
+import { useSwipeable } from "react-swipeable";
 
 const { Option } = Select;
 
 const Register = ({ setFlip, setLoading }) => {
   const [form] = Form.useForm();
+
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setFlip((prev) => !prev),
+    onSwipedRight: () => setFlip((prev) => !prev),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true, // for mouse input
+  });
 
   //update to server
   const onSubmit = async (values) => {
@@ -73,7 +82,7 @@ const Register = ({ setFlip, setLoading }) => {
     </Form.Item>
   );
   return (
-    <div className="wrap-footer">
+    <div className="wrap-footer" {...handlers}>
       <div className="container">
         <div class="register" style={{ minHeight: "100vh" }}>
           <div class="container">
