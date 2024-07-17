@@ -68,7 +68,9 @@ const NavbarAdmin = ({ setCollaps, user }) => {
       }`}
     >
       <Container fluid>
-        <Navbar.Brand className="fw-bold">Admin</Navbar.Brand>
+        <Link to={"/admin/"} style={{ textDecoration: "none", color: "#000" }}>
+          <Navbar.Brand className="fw-bold">Admin</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
