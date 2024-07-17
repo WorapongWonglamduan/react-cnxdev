@@ -250,7 +250,7 @@ const EditUsers = () => {
   return (
     <div className="container">
       <LoadingContentAdmin loading={loading}>
-        <h5 className="alert alert-dark fw-bold"> Edit User</h5>
+        {/* <h5 className="alert alert-dark fw-bold"> Edit User</h5> */}
         <br />
         <Card>
           <FormEdit />

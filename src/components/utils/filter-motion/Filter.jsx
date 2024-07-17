@@ -17,7 +17,7 @@ const Filter = ({
     );
 
     setFiltered(filtered);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory]);
 
   const allCategory = allProducts
@@ -29,7 +29,7 @@ const Filter = ({
     <div className="container text-center  p-4">
       <Space>
         <Button
-          className={activeCategory === 0 ? "active" : ""}
+          className={activeCategory === 0 ? "filter--active" : ""}
           onClick={() => setActiveCategory(0)}
         >
           All
@@ -38,7 +38,7 @@ const Filter = ({
           return (
             <Button
               key={index}
-              className={activeCategory === item ? "active" : ""}
+              className={activeCategory === item ? "filter--active" : ""}
               onClick={() => setActiveCategory(item)}
             >
               {"Group" + item}

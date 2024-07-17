@@ -3,13 +3,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Button, Table } from "antd";
 import { deleteUser, getUser } from "../../apis/baseApi";
 import { useNavigate } from "react-router-dom";
-import "./HomeAdmin.css";
+
 import { SwalHooks } from "../../hooks/sweet-alert2";
 import LoadingContentAdmin from "../../Loading/LoadingContentAdmin";
-// const onChange = (pagination, filters, sorter, extra) => {
-//   console.log("params", pagination, filters, sorter, extra);
-// };
 
+import HomeAdminStyle from "./HomeAdminStyle";
 const HomeAdmin = () => {
   const COLUMNS = [
     {
@@ -47,11 +45,11 @@ const HomeAdmin = () => {
       },
       sorter: (a, b) => a.email.length - b.email.length,
     },
-    {
-      title: "Address",
-      dataIndex: "address",
-      defaultSortOrder: "descend",
-    },
+    // {
+    //   title: "Address",
+    //   dataIndex: "address",
+    //   defaultSortOrder: "descend",
+    // },
     {
       title: "Status",
       dataIndex: "status",
@@ -70,6 +68,17 @@ const HomeAdmin = () => {
     {
       title: "Role",
       dataIndex: "roles",
+      filters: [
+        {
+          text: "Admin",
+          value: "admin",
+        },
+        {
+          text: "User",
+          value: "user",
+        },
+      ],
+      onFilter: (value, record) => record.roles.includes(value),
     },
     {
       title: "Date",
@@ -79,7 +88,7 @@ const HomeAdmin = () => {
       title: "Action",
       key: "action",
       render: (item, index) => (
-        <div className="d-flex gap-2" key={index}>
+        <div className={`d-flex gap-2  wrap-action`} key={index}>
           <Button
             onClick={() => {
               handleEdit(item);
@@ -163,6 +172,7 @@ const HomeAdmin = () => {
   }, []);
   return (
     <LoadingContentAdmin loading={loading}>
+      <HomeAdminStyle />
       <Table
         {...tableProps}
         columns={columns}
