@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
             <ul className="socials">
               {btnLoginSocial.map((item, index) => (
-                <li>
+                <li key={index}>
                   <a href="#home" title={item.name}>
                     <img
                       src={item.icon}

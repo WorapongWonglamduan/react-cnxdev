@@ -6,7 +6,7 @@ import Login from "./Login";
 
 // const SectionAuth = ({ setFlip }) => {
 //   return (
-//     <div className="wrap-footer">
+//     <div className="wrap-auth">
 //       <div className="container">
 //         <div className="row" style={{ minHeight: "100vh", padding: "16.5% 0" }}>
 //           <div className="col-md-6 mx-auto text-center">

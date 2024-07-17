@@ -43,8 +43,8 @@ const Login = ({ setFlip, setLoading }) => {
   //update to server
   const onSubmit = async (values) => {
     try {
-      const email = values.email;
-      const password = values.password;
+      const email = values?.email;
+      const password = values?.password;
 
       const user = onMatchAccount({
         email: email,
@@ -58,15 +58,21 @@ const Login = ({ setFlip, setLoading }) => {
         });
 
         toast.success("Login Success");
-        form.resetFields();
 
-        if (user.roles === "admin") {
+        if (user?.roles === "admin") {
           navigate("/admin/");
         } else {
-          document
-            .getElementById("home")
-            .scrollIntoView({ behavior: "smooth" });
+          //  scroll top
+          setTimeout(() => {
+            const homeElement = document.getElementById("home");
+            if (homeElement) {
+              homeElement.scrollIntoView({ behavior: "smooth" });
+            } else {
+              console.error("Element with ID 'home' not found.");
+            }
+          }, 0);
         }
+        form.resetFields();
       } else {
         toast.error("Email or Password Incorrect !");
       }
@@ -87,7 +93,7 @@ const Login = ({ setFlip, setLoading }) => {
   }, []);
 
   return (
-    <div className="wrap-footer">
+    <div className="wrap-auth">
       <div className="container">
         <div className="login" style={{ minHeight: "100vh" }}>
           <div className="container">
@@ -103,92 +109,106 @@ const Login = ({ setFlip, setLoading }) => {
                   </p>
                 </div>
               </div>
-              <div className="row mt-4">
-                <div className="col-md-5">
-                  <div className="social-registration">
+              {
+                <div className="row mt-4">
+                  <div className="col-md-5">
                     <div className="social-registration">
-                      {btnLoginSocial.map((item, index) => (
+                      <div className="social-registration">
+                        {btnLoginSocial.map((item, index) => (
+                          <button
+                            key={index}
+                            type="button"
+                            className={`btn btn-social ${item.class} mb-3`}
+                            onClick={() => {
+                              onFlip();
+                            }}
+                          >
+                            <img
+                              src={item.icon}
+                              alt="Facebook"
+                              className="btn-icon icon-white"
+                            />
+                            <span>Continue with {item.name}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-2">
+                    <div className="divider ">
+                      <div className="flip" onClick={() => onFlip()}>
+                        Flip
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-5">
+                    <div className="row">
+                      <div className="col-md-6 wrap-input-login">
+                        <div className="mb-3">
+                          <label className="form-label" htmlFor="email">
+                            Email
+                          </label>
+                          <Form.Item
+                            name="email"
+                            rules={[
+                              {
+                                required: true,
+                                type: "email",
+                                message: "The input is not valid E-mail!",
+                              },
+                              {
+                                message: "Please input your E-mail!",
+                              },
+                            ]}
+                          >
+                            <Input id="emailInput" />
+                          </Form.Item>
+                        </div>
+                      </div>
+
+                      <div className="col-md-6 wrap-input-login">
+                        <div className="mb-3">
+                          <label className="form-label" htmlFor="password">
+                            Password
+                          </label>
+                          <Form.Item
+                            name="password"
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please input your password!",
+                              },
+                            ]}
+                          >
+                            <Input.Password id="passwordInput" />
+                          </Form.Item>
+                        </div>
+                      </div>
+
+                      <div className="col-md-12 d-flex gap-4">
                         <button
-                          key={index}
+                          className="btn btn-outline-dark btn-lg"
+                          type="submit"
+                        >
+                          <span>Login Account</span>
+                        </button>
+                        <button
+                          className="btn btn-outline-dark btn-lg"
                           type="button"
-                          className={`btn btn-social ${item.class} mb-3`}
-                          onClick={() => {
-                            onFlip();
-                          }}
+                          onClick={() => onFlip()}
                         >
                           <img
-                            src={item.icon}
-                            alt="Facebook"
-                            className="btn-icon icon-white"
+                            src={Img.iconPlus}
+                            className="btn-icon icon-fb"
+                            alt="Plus"
                           />
-                          <span>Continue with {item.name}</span>
+                          <span>Create Account</span>
                         </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-2">
-                  <div className="divider ">
-                    <div className="flip" onClick={() => onFlip()}>
-                      Flip
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-5">
-                  <div className="row">
-                    <div className="col-md-6 wrap-input-login">
-                      <div className="mb-3">
-                        <label className="form-label" htmlFor="email">
-                          Email
-                        </label>
-                        <Form.Item
-                          name="email"
-                          rules={[
-                            {
-                              required: true,
-                              type: "email",
-                              message: "The input is not valid E-mail!",
-                            },
-                            {
-                              message: "Please input your E-mail!",
-                            },
-                          ]}
-                        >
-                          <Input />
-                        </Form.Item>
                       </div>
                     </div>
-
-                    <div className="col-md-6 wrap-input-login">
-                      <div className="mb-3">
-                        <label className="form-label" htmlFor="password">
-                          Password
-                        </label>
-                        <Form.Item
-                          name="password"
-                          rules={[
-                            {
-                              required: true,
-                              message: "Please input your password!",
-                            },
-                          ]}
-                        >
-                          <Input.Password />
-                        </Form.Item>
-                      </div>
-                    </div>
-
-                    <div className="col-md-12 d-flex gap-4">
-                      <button
-                        className="btn btn-outline-dark btn-lg"
-                        type="submit"
-                      >
-                        <span>Login Account</span>
-                      </button>
-                    </div>
                   </div>
                 </div>
-              </div>
+              }
             </Form>
           </div>
         </div>

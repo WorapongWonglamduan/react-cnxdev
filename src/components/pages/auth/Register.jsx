@@ -81,7 +81,7 @@ const Register = ({ setFlip, setLoading }) => {
     </Form.Item>
   );
   return (
-    <div className="wrap-footer">
+    <div className="wrap-auth">
       <div className="container">
         <div className="register" style={{ minHeight: "100vh" }}>
           <div className="container">
@@ -257,6 +257,13 @@ const Register = ({ setFlip, setLoading }) => {
                           alt="Plus"
                         />
                         <span>Create Account</span>
+                      </button>
+                      <button
+                        className="btn btn-outline-dark btn-lg"
+                        type="button"
+                        onClick={() => onFlip()}
+                      >
+                        <span>Login</span>
                       </button>
                     </div>
                   </div>
