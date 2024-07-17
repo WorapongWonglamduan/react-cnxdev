@@ -37,11 +37,11 @@ const Navbar = ({ user }) => {
       key: "2",
       label: (
         <a
-          href="#footer"
+          href="#auth"
           onClick={(e) => {
             e.preventDefault();
             document
-              .getElementById("footer")
+              .getElementById("auth")
               .scrollIntoView({ behavior: "smooth" });
           }}
           style={{ fontWeight: "bold", textDecoration: "none" }}

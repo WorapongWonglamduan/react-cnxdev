@@ -17,6 +17,7 @@ const Filter = ({
     );
 
     setFiltered(filtered);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory]);
 
   const allCategory = allProducts

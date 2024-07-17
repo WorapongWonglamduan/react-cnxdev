@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import Navbar from "../layouts/Navbar";
 import { shallowEqual, useSelector } from "react-redux";
+import Footer from "../layouts/Footer";
 
 //  children is content render
 const UserRoute = ({ children }) => {
@@ -10,6 +11,7 @@ const UserRoute = ({ children }) => {
     <>
       <Navbar user={memoizedUser} />
       {children}
+      <Footer />
     </>
   );
 };

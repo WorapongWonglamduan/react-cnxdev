@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getUser, getUserById, updateUserById } from "../../apis/baseApi";
+import { /* getUser, getUserById, */ updateUserById } from "../../apis/baseApi";
 import { useLocation } from "react-router-dom";
 import "./EditUsers.css";
 import { Form, Input, Select, Space, Switch, Card } from "antd";
@@ -46,7 +46,7 @@ const EditUsers = () => {
   const { state } = useLocation();
   const [form] = Form.useForm();
   const [, /* userData */ setUserData] = useState([]);
-  const [allUserData, setAllUserData] = useState([]);
+  // const [allUserData, setAllUserData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [initialValuesForm, setInitialValuesForm] = useState({});
   //alert
@@ -130,6 +130,7 @@ const EditUsers = () => {
   //first load
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const FormEdit = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 // import Navbar from "./components/layouts/Navbar";
 import Home from "./components/pages/home/Home";
@@ -73,8 +73,6 @@ const App = () => {
           }
         />
       </Routes>
-
-      <></>
     </div>
   );
 };

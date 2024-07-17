@@ -5,8 +5,8 @@ import FeatureProduct from "./FeatureProduct";
 import JsonData from "../../data/data.json";
 import Service from "./Service";
 import About from "./About";
-import Footer from "../../layouts/Footer";
 import LoadingOverlay from "../../Loading/LoadingOverLay";
+import Auth from "../auth/Auth";
 
 const Home = () => {
   const [landingPageData, setLandingPageData] = useState({});
@@ -21,7 +21,7 @@ const Home = () => {
       <About data={landingPageData.About} />
       <Service data={landingPageData.Services} />
       <FeatureProduct />
-      <Footer setLoading={setLoading} />
+      <Auth setLoading={setLoading} />
     </LoadingOverlay>
   );
 };

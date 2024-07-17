@@ -37,13 +37,25 @@ const HomeSlider = () => {
     <section id="home">
       <Carousel responsive={responsive} infinite={true} {...config}>
         <div>
-          <img src={Img.homeSlide1} className="carousel-item___bg-image" />
+          <img
+            src={Img.homeSlide1}
+            className="carousel-item___bg-image"
+            alt=""
+          />
         </div>
         <div>
-          <img src={Img.homeSlide2} className="carousel-item___bg-image" />
+          <img
+            src={Img.homeSlide2}
+            className="carousel-item___bg-image"
+            alt=""
+          />
         </div>
         <div>
-          <img src={Img.homeSlide3} className="carousel-item___bg-image" />
+          <img
+            src={Img.homeSlide3}
+            className="carousel-item___bg-image"
+            alt=""
+          />
         </div>
       </Carousel>
     </section>

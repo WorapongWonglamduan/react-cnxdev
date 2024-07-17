@@ -1,87 +1,90 @@
-import React, { useState } from "react";
+import React from "react";
+import { Img } from "../../assets/image/hookImg";
 import "./Footer.css";
-import ReactCardFlip from "react-card-flip";
-import Register from "../pages/auth/Register";
-import Login from "../pages/auth/Login";
+import moment from "moment";
+const Footer = () => {
+  const btnLoginSocial = [
+    { name: "Facebook", className: "btn-facebook", icon: Img.iconFb },
+    { name: "Twitter", className: "btn-twitter", icon: Img.iconTw },
+    { name: "Gmail", className: "btn-gmail", icon: Img.iconGmail },
+    { name: "LinkedIn", className: "btn-linkedin", icon: Img.iconLn },
+  ];
 
-const SectionFooter = ({ setFlip }) => {
+  const footerDetails = [
+    {
+      title: "Company",
+      children: [
+        { text: "Home", href: "#home" },
+        { text: "About Us", href: "#about" },
+        { text: "Service", href: "#service" },
+        { text: "Feature", href: "#feature" },
+      ],
+    },
+    {
+      title: "Account",
+      children: [
+        { text: "Login", href: "#auth" },
+        { text: "Register", href: "#auth" },
+        { text: "Members", href: "#auth" },
+      ],
+    },
+    {
+      title: "Legal",
+      children: [
+        { text: "Privacy Policy", href: "#home" },
+        { text: "Terms of Use", href: "#home" },
+        { text: "Cookies", href: "#home" },
+        { text: "Disclaimer", href: "#home" },
+      ],
+    },
+  ];
   return (
-    <div className="wrap-footer">
+    <footer className="page-footer">
       <div className="container">
-        <div className="row" style={{ minHeight: "100vh", padding: "16.5% 0" }}>
-          <div className="col-md-6 mx-auto text-center">
-            <h2 className="mb-4 fw-bold">Join Our Community Today!</h2>
-
-            <h4>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt
-              ipsam dignissimos, amet voluptatibus possimus in? .Lorem ipsum
-              dolor sit, amet voluptatibus possimus in? .Lorem ipsum dolor sit,
-              amet voluptatibus possimus in? .Lorem ipsum dolor sit
-            </h4>
-            <button
-              onClick={() =>
-                setFlip((prev) => ({
-                  ...prev,
-                  flip: !prev.flip,
-                  page: "login",
-                }))
-              }
-              className="btn  btn-outline-dark ms-md-2 mt-2 mt-md-0"
-            >
-              Login
-            </button>
-            <div className="w-100 d-md-none"></div>
-            <button
-              onClick={() =>
-                setFlip((prev) => ({
-                  ...prev,
-                  flip: !prev.flip,
-                  page: "register",
-                }))
-              }
-              className="btn  btn-outline-dark ms-md-2 mt-2 mt-md-0"
-            >
-              Create Account
-            </button>
+        <div className="row">
+          <div className="col-md-3 me-auto">
+            <div className="navbar-brand">
+              <h3>Logo</h3>
+              <span>Lorem, ipsum dolor.</span>
+            </div>
+            <ul className="socials">
+              {btnLoginSocial.map((item, index) => (
+                <li>
+                  <a href="#home" title={item.name}>
+                    <img
+                      src={item.icon}
+                      alt={item.name}
+                      className="btn-icon icon-white"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
+
+          {footerDetails.map((item, index) => (
+            <div key={index} className="col-md-2">
+              <h5 className="title">{item.title}</h5>
+              <ul className="nav flex-column">
+                {item.children.map((child, idx) => (
+                  <li key={idx} className="nav-item mb-2">
+                    <a href={child.href} className="nav-link p-0">
+                      {child.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
+
+        <hr />
+
+        <p className="m-0 company-build">
+          © {moment().format("YYYY")} LOGO Limited – All Rights Reserved
+        </p>
       </div>
-    </div>
-  );
-};
-
-const RenderPage = ({ isFlip, setFlip, loading, setLoading }) => {
-  return (
-    <>
-      {isFlip?.page === "register" ? (
-        <Register setFlip={setFlip} loading={loading} setLoading={setLoading} />
-      ) : (
-        isFlip?.page === "login" && (
-          <Login setFlip={setFlip} loading={loading} setLoading={setLoading} />
-        )
-      )}
-    </>
-  );
-};
-const Footer = ({ loading, setLoading }) => {
-  const [isFlip, setFlip] = useState({ flip: false, page: "register" });
-
-  return (
-    <section id="footer">
-      <ReactCardFlip isFlipped={isFlip.flip}>
-        <SectionFooter
-          setFlip={setFlip}
-          loading={loading}
-          setLoading={setLoading}
-        />
-        <RenderPage
-          isFlip={isFlip}
-          setFlip={setFlip}
-          loading={loading}
-          setLoading={setLoading}
-        />
-      </ReactCardFlip>
-    </section>
+    </footer>
   );
 };
 

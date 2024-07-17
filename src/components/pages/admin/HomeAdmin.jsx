@@ -100,6 +100,7 @@ const HomeAdmin = () => {
     },
   ];
   const { SwalConfirm, SwalSucces, SwalFail } = SwalHooks();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const columns = useMemo(() => COLUMNS, []);
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -1,48 +1,7 @@
 export const user = {
   status: 200,
   data: {
-    // users: [
-    //   {
-    //     uid: 1,
-    //     firstName: "worapong",
-    //     lastName: "wonglamduan",
-    //     email: "the_oo_ooo@hotmail.com",
-    //     roles: "developer",
-    //     status: "active",
-    //     address: "kk",
-    //     id: 2,
-    //   },
-    //   {
-    //     uid: 2,
-    //     firstName: "wor",
-    //     lastName: "wonglamduan",
-    //     email: "the_oo_ooo@hotmail.com",
-    //     roles: "developer",
-    //     status: "active",
-    //     address: "kk",
-    //     id: 3,
-    //   },
-    //   {
-    //     uid: 3,
-    //     firstName: "g",
-    //     lastName: "wonglamduan",
-    //     email: "the_oo_ooo@hotmail.com",
-    //     roles: "developer",
-    //     status: "active",
-    //     address: "kk",
-    //     id: 4,
-    //   },
-    //   {
-    //     uid: 4,
-    //     firstName: "worapong",
-    //     lastName: "wonglamduan",
-    //     email: "the_oo_ooo@hotmail.com",
-    //     roles: "developer",
-    //     status: "active",
-    //     address: "kk",
-    //     id: 5,
-    //   },
-    // ],
+    // eslint-disable-next-line no-sparse-arrays
     users: [
       {
         uid: "ad299ca3-70e2-4449-8afe-8672f21e7008",

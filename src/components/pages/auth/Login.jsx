@@ -25,6 +25,21 @@ const Login = ({ setFlip, setLoading }) => {
     });
   };
 
+  const onFlip = () => {
+    setFlip((prev) => ({
+      ...prev,
+      flip: !prev.flip,
+      page: "register",
+    }));
+  };
+
+  const btnLoginSocial = [
+    { name: "Facebook", class: "btn-facebook", icon: Img.iconFb },
+    { name: "Twitter", class: "btn-twitter", icon: Img.iconTw },
+    { name: "Gmail", class: "btn-gmail", icon: Img.iconGmail },
+    { name: "LinkedIn", class: "btn-linkedin", icon: Img.iconLn },
+  ];
+
   //update to server
   const onSubmit = async (values) => {
     try {
@@ -91,52 +106,30 @@ const Login = ({ setFlip, setLoading }) => {
               <div className="row mt-4">
                 <div className="col-md-5">
                   <div className="social-registration">
-                    <a href="#" className="btn btn-social btn-facebook mb-3">
-                      <img
-                        src={Img.iconFb}
-                        alt="Facebook"
-                        className="btn-icon icon-white"
-                      />
-                      <span>Continue with Facebook</span>
-                    </a>
-                    <a href="#" className="btn btn-social btn-twitter mb-3">
-                      <img
-                        src={Img.iconTw}
-                        alt="Twitter"
-                        className="btn-icon icon-white"
-                      />
-                      <span>Continue with Twitter</span>
-                    </a>
-                    <a href="#" className="btn btn-social btn-gmail mb-3">
-                      <img
-                        src={Img.iconGmail}
-                        alt="Gmail"
-                        className="btn-icon icon-white"
-                      />
-                      <span>Continue with Gmail</span>
-                    </a>
-                    <a href="#" className="btn btn-social btn-linkedin mb-3">
-                      <img
-                        src={Img.iconLn}
-                        alt="LinkedIn"
-                        className="btn-icon icon-white"
-                      />
-                      <span>Continue with LinkedIn</span>
-                    </a>
+                    <div className="social-registration">
+                      {btnLoginSocial.map((item, index) => (
+                        <button
+                          key={index}
+                          type="button"
+                          className={`btn btn-social ${item.class} mb-3`}
+                          onClick={() => {
+                            onFlip();
+                          }}
+                        >
+                          <img
+                            src={item.icon}
+                            alt="Facebook"
+                            className="btn-icon icon-white"
+                          />
+                          <span>Continue with {item.name}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-2">
                   <div className="divider ">
-                    <div
-                      className="flip"
-                      onClick={() =>
-                        setFlip((prev) => ({
-                          ...prev,
-                          flip: !prev.flip,
-                          page: "login",
-                        }))
-                      }
-                    >
+                    <div className="flip" onClick={() => onFlip()}>
                       Flip
                     </div>
                   </div>
