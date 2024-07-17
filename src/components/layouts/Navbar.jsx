@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Avatar, Space, Dropdown } from "antd";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { capitalizeFirstLetter } from "../utils/utils-fuc";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -25,12 +25,12 @@ const Navbar = ({ user }) => {
     user && {
       key: "1",
       label: (
-        <Link
+        <NavLink
           onClick={() => onLogout()}
           style={{ fontWeight: "bold", textDecoration: "none" }}
         >
           Logout
-        </Link>
+        </NavLink>
       ),
     },
     !user && {
@@ -53,12 +53,12 @@ const Navbar = ({ user }) => {
     {
       key: "3",
       label: (
-        <Link
+        <NavLink
           to={"/admin/"}
           style={{ fontWeight: "bold", textDecoration: "none" }}
         >
           Admin Mode
-        </Link>
+        </NavLink>
       ),
     },
   ];

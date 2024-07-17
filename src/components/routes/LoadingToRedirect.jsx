@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingOverLay from "../Loading/LoadingOverLay";
 
-const LoadingToRedirect = () => {
+const LoadingToRedirect = ({ children }) => {
   const navigate = useNavigate();
 
   const [count, setCount] = useState(3);
@@ -19,7 +19,7 @@ const LoadingToRedirect = () => {
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
-  return <LoadingOverLay loading={true} />;
+  return <LoadingOverLay loading={true} children={children} />;
 };
 
 export default LoadingToRedirect;

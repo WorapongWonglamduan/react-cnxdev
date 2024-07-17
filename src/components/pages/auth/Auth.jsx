@@ -1,9 +1,67 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Auth.css";
 import ReactCardFlip from "react-card-flip";
 import Register from "./Register";
 import Login from "./Login";
+import { getUser } from "../../apis/baseApi";
 
+const Auth = ({ loading, setLoading }) => {
+  const [isFlip, setFlip] = useState({ flip: false, page: "register" });
+  const [allUsers, setAllUsers] = useState([]);
+  const getData = async () => {
+    const res = await getUser();
+    if (res.status === 200) {
+      setAllUsers(res?.data?.users);
+    }
+  };
+  //first load
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <section id="auth">
+      <ReactCardFlip isFlipped={isFlip.flip}>
+        <Login
+          setFlip={setFlip}
+          loading={loading}
+          setLoading={setLoading}
+          allUsers={allUsers}
+        />
+        <Register
+          setFlip={setFlip}
+          loading={loading}
+          setLoading={setLoading}
+          refetch={() => {
+            getData();
+          }}
+        />
+      </ReactCardFlip>
+    </section>
+  );
+};
+
+export default Auth;
+
+{
+  /*  3 page  */
+}
+{
+  /* <ReactCardFlip isFlipped={isFlip.flip}>
+        <SectionAuth
+          setFlip={setFlip}
+          loading={loading}
+          setLoading={setLoading}
+        />
+        <RenderPage
+          isFlip={isFlip}
+          setFlip={setFlip}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      </ReactCardFlip> */
+}
+//  3 content
 // const SectionAuth = ({ setFlip }) => {
 //   return (
 //     <div className="wrap-auth">
@@ -62,31 +120,3 @@ import Login from "./Login";
 //     </>
 //   );
 // };
-const Auth = ({ loading, setLoading }) => {
-  const [isFlip, setFlip] = useState({ flip: false, page: "register" });
-
-  return (
-    <section id="auth">
-      {/*  3 page  */}
-      {/* <ReactCardFlip isFlipped={isFlip.flip}>
-        <SectionAuth
-          setFlip={setFlip}
-          loading={loading}
-          setLoading={setLoading}
-        />
-        <RenderPage
-          isFlip={isFlip}
-          setFlip={setFlip}
-          loading={loading}
-          setLoading={setLoading}
-        />
-      </ReactCardFlip> */}
-      <ReactCardFlip isFlipped={isFlip.flip}>
-        <Login setFlip={setFlip} loading={loading} setLoading={setLoading} />
-        <Register setFlip={setFlip} loading={loading} setLoading={setLoading} />
-      </ReactCardFlip>
-    </section>
-  );
-};
-
-export default Auth;

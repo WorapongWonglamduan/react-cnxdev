@@ -11,7 +11,7 @@ import { SwalHooks } from "../../hooks/sweet-alert2";
 
 const { Option } = Select;
 
-const Register = ({ setFlip, setLoading }) => {
+const Register = ({ setFlip, setLoading, refetch }) => {
   const [form] = Form.useForm();
   const { SwalSucces, SwalFail } = SwalHooks();
 
@@ -48,6 +48,7 @@ const Register = ({ setFlip, setLoading }) => {
       if (res.status === 200) {
         //time load
         setTimeout(() => {
+          refetch();
           setLoading(false);
           SwalSucces({ title: "Create Success", text: "" });
           form.resetFields();

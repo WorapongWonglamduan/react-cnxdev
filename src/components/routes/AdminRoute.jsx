@@ -4,6 +4,7 @@ import NavbarAdmin from "../layouts/NavbarAdmin";
 import SidebarAdmin from "../layouts/SidebarAdmin";
 import { shallowEqual, useSelector } from "react-redux";
 import LoadingToRedirect from "./LoadingToRedirect";
+import { toast } from "react-toastify";
 
 //  children is content render
 const AdminRoute = ({ children }) => {
@@ -17,6 +18,9 @@ const AdminRoute = ({ children }) => {
       setIsAdmin(true);
     } else {
       setIsAdmin(false);
+      setTimeout(() => {
+        toast.warn("no have permission access !");
+      }, 500);
     }
   }, [memoizedUser]);
 

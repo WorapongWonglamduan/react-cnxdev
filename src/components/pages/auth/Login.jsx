@@ -5,23 +5,21 @@ import "./Login.css";
 
 import { Form, Input } from "antd";
 
-import { getUser } from "../../apis/baseApi";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setFlip, setLoading }) => {
+const Login = ({ setFlip, setLoading, allUsers }) => {
   //redux
   const dispatch = useDispatch();
 
   //hooks
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const [allUsers, setAllUsers] = useState([]);
 
   const onMatchAccount = ({ email, password }) => {
     return allUsers.find((acc) => {
-      return email === acc?.email && password === acc?.password;
+      return email === acc?.email && password == acc?.password;
     });
   };
 
@@ -80,17 +78,6 @@ const Login = ({ setFlip, setLoading }) => {
       console.error("Error Login user:", error);
     }
   };
-
-  const getData = async () => {
-    const res = await getUser();
-    if (res.status === 200) {
-      setAllUsers(res?.data?.users);
-    }
-  };
-  //first load
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className="wrap-auth">

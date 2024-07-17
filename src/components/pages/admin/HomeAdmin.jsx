@@ -8,11 +8,16 @@ import { SwalHooks } from "../../hooks/sweet-alert2";
 import LoadingContentAdmin from "../../Loading/LoadingContentAdmin";
 
 import HomeAdminStyle from "./HomeAdminStyle";
+
 const HomeAdmin = () => {
   const COLUMNS = [
+    // {
+    //   title: "Uid",
+    //   dataIndex: "uid",
+    // },
     {
-      title: "Uid",
-      dataIndex: "uid",
+      title: "No.",
+      render: (item, index) => <div key={index}>{item.id - 1}</div>,
     },
     {
       title: "FirstName",
@@ -45,11 +50,11 @@ const HomeAdmin = () => {
       },
       sorter: (a, b) => a.email.length - b.email.length,
     },
-    // {
-    //   title: "Address",
-    //   dataIndex: "address",
-    //   defaultSortOrder: "descend",
-    // },
+    {
+      title: "Address",
+      dataIndex: "address",
+      defaultSortOrder: "descend",
+    },
     {
       title: "Status",
       dataIndex: "status",
@@ -87,25 +92,33 @@ const HomeAdmin = () => {
     {
       title: "Action",
       key: "action",
-      render: (item, index) => (
-        <div className={`d-flex gap-2  wrap-action`} key={index}>
-          <Button
-            onClick={() => {
-              handleEdit(item);
-            }}
-          >
-            Edit
-          </Button>
+      render: (item, index) => {
+        const isAdmin = item.roles === "admin";
 
-          <Button
-            onClick={() => {
-              handleDelete(item);
-            }}
-          >
-            Delete
-          </Button>
-        </div>
-      ),
+        return (
+          <>
+            {!isAdmin && (
+              <div className={`d-flex gap-2  wrap-action`} key={index}>
+                <Button
+                  onClick={() => {
+                    handleEdit(item);
+                  }}
+                >
+                  Edit
+                </Button>
+
+                <Button
+                  onClick={() => {
+                    handleDelete(item);
+                  }}
+                >
+                  Delete
+                </Button>
+              </div>
+            )}
+          </>
+        );
+      },
     },
   ];
   const { SwalConfirm, SwalSucces, SwalFail } = SwalHooks();
@@ -177,7 +190,6 @@ const HomeAdmin = () => {
         {...tableProps}
         columns={columns}
         dataSource={userData.map((user) => ({ ...user, key: user.uid }))}
-        // onChange={onChange}
         bordered={true}
         showSorterTooltip={{
           target: "sorter-icon",
